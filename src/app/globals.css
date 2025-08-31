@@ -12,7 +12,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
@@ -23,4 +23,30 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* For Webkit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* vertical scrollbar */
+  height: 5px; /* horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f4b400; /* primary color as track */
+  margin: 50px 0; /* makes vertical scrollbar shorter */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d2cbb8; /* thumb color */
+  border-radius: 0;   /* squared edges */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b8ae97; /* darker hover effect */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: auto; 
+  scrollbar-color: #d2cbb8 #f4b400; /* thumb | track */
 }
