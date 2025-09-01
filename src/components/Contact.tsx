@@ -1,36 +1,47 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
-import {
-  User,
-  Mail,
-  MessageSquare,
-  Send,
-  Phone,
-  HeadsetIcon,
-} from "lucide-react";
+import React, { useRef } from "react";
+import { User, Mail, MessageSquare, Send, Phone, Headset } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 const Contact = () => {
-  //   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-  //     const form = e.currentTarget;
-  //     const name = form.name.valueOf;
-  //     const email = form.email.value;
-  //     const message = form.message.value;
+  const form = useRef<HTMLFormElement>(null);
 
-  //     window.location.href = `mailto:youremail@example.com?subject=Contact Form: ${name}&body=Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
-  //   };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!form.current) return;
+
+    emailjs
+      .sendForm(
+        "service_dc28lkp",
+        "template_6hcczuj",
+        form.current,
+        "GpGOlevF-TuFy8Urg"
+      )
+      .then(
+        () =>
+          toast.success("Message sent successfully", {
+            style: { backgroundColor: "#22c55e" },
+          }),
+        (err) =>
+          toast.error("Error sending message", {
+            style: { backgroundColor: "#ef4444" },
+          })
+      );
+
+    form.current.reset();
+  };
 
   return (
     <div className="w-full py-16 px-4 md:px-12 lg:px-20 bg-[#fce7af]">
-      {/* Heading */}
       <h2 className="flex items-center justify-center text-3xl md:text-4xl font-bold text-gray-900 mb-12 gap-2">
-        <HeadsetIcon className="w-10 h-10 text-[#F4B400]" />
+        <Headset className="w-10 h-10 text-[#F4B400]" />
         Get In <span className="text-[#F4B400]">Touch</span>
       </h2>
 
-      {/* Layout */}
       <div className="flex flex-col md:flex-row items-center gap-12">
-        {/* Image Section */}
         <div className="md:w-1/2 flex justify-center">
           <Image
             src="/images/contactus.jpg"
@@ -41,14 +52,13 @@ const Contact = () => {
           />
         </div>
 
-        {/* Form Section */}
         <form
-          //   onSubmit={handleSubmit}
+          ref={form}
+          onSubmit={handleSubmit}
           className="md:w-1/2 w-full bg-white shadow-md rounded-2xl p-6 flex flex-col gap-4"
         >
-          {/* Name */}
           <div className="flex items-center gap-3 border border-gray-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-[#F4B400]">
-            <User className="text-gray-400 size-5" />
+            <User className="text-gray-400 w-5 h-5" />
             <input
               name="name"
               type="text"
@@ -58,9 +68,8 @@ const Contact = () => {
             />
           </div>
 
-          {/* Email */}
           <div className="flex items-center gap-3 border border-gray-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-[#F4B400]">
-            <Mail className="text-gray-400 size-5" />
+            <Mail className="text-gray-400 w-5 h-5" />
             <input
               name="email"
               type="email"
@@ -69,9 +78,9 @@ const Contact = () => {
               required
             />
           </div>
-          {/*Phone */}
+
           <div className="flex items-center gap-3 border border-gray-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-[#F4B400]">
-            <Phone className="text-gray-400 size-5" />
+            <Phone className="text-gray-400 w-5 h-5" />
             <input
               name="phone"
               type="tel"
@@ -80,9 +89,9 @@ const Contact = () => {
               required
             />
           </div>
-          {/* Message */}
+
           <div className="flex items-start gap-3 border border-gray-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-[#F4B400]">
-            <MessageSquare className="text-gray-400 size-5 mt-2" />
+            <MessageSquare className="text-gray-400 w-5 h-5 mt-2" />
             <textarea
               name="message"
               rows={5}
@@ -92,7 +101,6 @@ const Contact = () => {
             />
           </div>
 
-          {/* Submit Button (Right Aligned) */}
           <div className="flex justify-end">
             <button
               type="submit"

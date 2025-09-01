@@ -4,6 +4,7 @@ import Education from "@/components/Education";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import Skills from "@/components/Skills";
+import StickyWhatsapp from "@/components/StickyWhatsapp";
 export default function HomePage() {
   return (
     <>
@@ -23,6 +24,7 @@ export default function HomePage() {
       <section id="contact">
         <Contact />
       </section>
+      <StickyWhatsapp/>
     </>
   );
 }
