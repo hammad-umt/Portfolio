@@ -29,7 +29,7 @@ const Contact = () => {
             style: { backgroundColor: "#22c55e" },
           }),
         (err) =>
-          toast.error("Error sending message", {
+          toast.error("Error sending message \n Kindly WhatsApp us", {
             style: { backgroundColor: "#ef4444" },
           })
       );
