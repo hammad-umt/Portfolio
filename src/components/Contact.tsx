@@ -3,36 +3,34 @@
 import Image from "next/image";
 import React, { useRef } from "react";
 import { User, Mail, MessageSquare, Send, Phone, Headset } from "lucide-react";
-import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
-  const serviceKey = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-  const templateKey = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.current) return;
 
-    emailjs
-      .sendForm(
-        `${serviceKey}`,
-        `${templateKey}`,
-        form.current,
-        `${publicKey}`
-      )
-      .then(
-        () =>
-          toast.success("Message sent successfully", {
-            style: { backgroundColor: "#22c55e" },
-          }),
-        (err) =>
-          toast.error("Error sending message \n Kindly WhatsApp us", {
-            style: { backgroundColor: "#ef4444" },
-          })
-      );
+    const formData = new FormData(form.current);
+    const data = Object.fromEntries(formData); // {name, email, phone, message}
+
+    try {
+      const res = await fetch("/.netlify/functions/sendEmail", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+      if (res.ok)
+        toast.success(result.message, { style: { backgroundColor: "#22c55e" } });
+      else
+        toast.error(result.error, { style: { backgroundColor: "#ef4444" } });
+    } catch (err) {
+      toast.error("Error sending message \n Kindly WhatsApp us", {
+        style: { backgroundColor: "#ef4444" },
+      });
+    }
 
     form.current.reset();
   };
