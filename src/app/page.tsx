@@ -5,26 +5,28 @@ import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import Skills from "@/components/Skills";
 import StickyWhatsapp from "@/components/StickyWhatsapp";
+import ScrollFade from "@/components/ui/AnimateOnScroll";
 export default function HomePage() {
   return (
     <>
       <Navbar />
-      <section id="home">
+
+      <ScrollFade>
         <HeroSection />
-      </section>
-      <section id="about">
+      </ScrollFade>
+      <ScrollFade>
         <AboutMe />
-      </section>
-      <section id="skills">
-        <Skills/>
-      </section>
-      <section id="education">
+      </ScrollFade>
+      <ScrollFade>
+        <Skills />
+      </ScrollFade>
+      <ScrollFade>
         <Education />
-      </section>
-      <section id="contact">
+      </ScrollFade>
+      <ScrollFade>
         <Contact />
-      </section>
-      <StickyWhatsapp/>
+      </ScrollFade>
+      <StickyWhatsapp />
     </>
   );
 }
