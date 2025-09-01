@@ -8,6 +8,9 @@ import { toast } from "sonner";
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
+  const serviceKey = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+  const templateKey = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,10 +18,10 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        "service_dc28lkp",
-        "template_6hcczuj",
+        `${serviceKey}`,
+        `${templateKey}`,
         form.current,
-        "GpGOlevF-TuFy8Urg"
+        `${publicKey}`
       )
       .then(
         () =>
