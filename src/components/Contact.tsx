@@ -98,7 +98,7 @@ const Contact = () => {
               type="submit"
               className="flex items-center gap-2 bg-[#F4B400] text-white font-semibold py-3 px-6 rounded-xl hover:bg-yellow-500 transition-colors"
             >
-              Send Message
+              Send
               <Send className="w-5 h-5" />
             </button>
           </div>

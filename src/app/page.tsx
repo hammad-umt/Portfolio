@@ -3,6 +3,7 @@ import Contact from "@/components/Contact";
 import Education from "@/components/Education";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
+import Skills from "@/components/Skills";
 export default function HomePage() {
   return (
     <>
@@ -12,6 +13,9 @@ export default function HomePage() {
       </section>
       <section id="about">
         <AboutMe />
+      </section>
+      <section id="skills">
+        <Skills/>
       </section>
       <section id="education">
         <Education />
