@@ -1,4 +1,5 @@
 import AboutMe from "@/components/AboutMe";
+import Contact from "@/components/Contact";
 import Education from "@/components/Education";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
@@ -7,14 +8,17 @@ export default function HomePage() {
     <>
       <Navbar />
       <section id="home">
-        <HeroSection/>
+        <HeroSection />
       </section>
       <section id="about">
         <AboutMe />
       </section>
-    <section id='education'>
-    <Education/>
-    </section>
+      <section id="education">
+        <Education />
+      </section>
+      <section id="contact">
+        <Contact />
+      </section>
     </>
   );
 }
