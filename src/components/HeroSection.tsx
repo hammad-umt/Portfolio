@@ -98,7 +98,7 @@ const HeroSection = () => {
           onClick={function (): void {
             document
               .querySelector("#about")
-              ?.scrollIntoView({ behavior: "smooth" });
+              ?.scrollIntoView({ behavior: "smooth", block: "start" ,});
           }}
         />
         <ul className="flex gap-4 text-2xl text-white  py-4">
