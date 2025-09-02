@@ -18,7 +18,7 @@ export default function ScrollFade({ children }: Props) {
           setIsVisible(false); // fade out
         }
       },
-      { threshold: 0.4 } // trigger when 30% visible
+      { threshold: 0.1 } // trigger when 30% visible
     );
 
     if (ref.current) observer.observe(ref.current);
