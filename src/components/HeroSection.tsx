@@ -97,7 +97,7 @@ const HeroSection = () => {
           title={"About Me"}
           onClick={function (): void {
             document
-              .getElementById("about")
+              .querySelector("#about")
               ?.scrollIntoView({ behavior: "smooth" });
           }}
         />
