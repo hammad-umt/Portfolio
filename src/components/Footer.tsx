@@ -1,72 +1,118 @@
-import { faFacebook, faGithub, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faPhone, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+'use client'
+import React, { useState, useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import {
+  faFacebook,
+  faGithub,
+  faInstagram,
+  faLinkedin
+} from '@fortawesome/free-brands-svg-icons'
+import {
+  faPhone,
+  faEnvelope,
+  faMapMarkerAlt,
+  faArrowUp
+} from '@fortawesome/free-solid-svg-icons'
 
 const Footer = () => {
+  const footerRef = useRef<HTMLElement | null>(null)
+  const [showTop, setShowTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!footerRef.current) return
+      const rect = footerRef.current.getBoundingClientRect()
+      // check if footer is visible in viewport
+      const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0
+      setShowTop(isVisible)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // run on mount
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <footer className="bg-yellow-400 text-gray-900 px-6 py-10 shadow rounded-lg">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-center md:text-left">
-        
-        {/* Branding */}
-        <div>
-          <h1 className="text-2xl font-bold mb-3">Hammad&apos;s Portfolio</h1>
-          <p className="text-base leading-relaxed">
-            Thank you for visiting my personal portfolio website.  
-            Connect with me over socials.  
-            <br />Keep Rising 🚀. Connect with me over live chat!
-          </p>
-        </div>
+    <>
+      <footer
+        ref={footerRef}
+        className="bg-yellow-400 text-gray-900 px-6 py-10 shadow rounded-lg relative"
+      >
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-center md:text-left">
+          
+          {/* Branding */}
+          <div>
+            <h1 className="text-2xl font-bold mb-3">Hammad&apos;s Portfolio</h1>
+            <p className="text-base leading-relaxed">
+              Thank you for visiting my personal portfolio website.  
+              Connect with me over socials.  
+              <br />Keep Rising 🚀. Connect with me over live chat!
+            </p>
+          </div>
 
-        {/* Quick Links */}
-        <div>
-          <h2 className="text-xl font-semibold mb-3">Quick Links</h2>
-          <ul className="space-y-2 text-base">
-            <li><a href="#home" className="hover:underline hover:text-black">Home</a></li>
-            <li><a href="#about" className="hover:underline hover:text-black">About</a></li>
-            <li><a href="#skills" className="hover:underline hover:text-black">Skills</a></li>
-            <li><a href="#education" className="hover:underline hover:text-black">Education</a></li>
-            <li><a href="#work" className="hover:underline hover:text-black">Work</a></li>
-            <li><a href="#contact" className="hover:underline hover:text-black">Contact</a></li>
-          </ul>
-        </div>
+          {/* Quick Links */}
+          <div>
+            <h2 className="text-xl font-semibold mb-3">Quick Links</h2>
+            <ul className="space-y-2 text-base">
+              <li><a href="#home" className="hover:underline hover:text-black">Home</a></li>
+              <li><a href="#about" className="hover:underline hover:text-black">About</a></li>
+              <li><a href="#skills" className="hover:underline hover:text-black">Skills</a></li>
+              <li><a href="#education" className="hover:underline hover:text-black">Education</a></li>
+              <li><a href="#work" className="hover:underline hover:text-black">Work</a></li>
+              <li><a href="#contact" className="hover:underline hover:text-black">Contact</a></li>
+            </ul>
+          </div>
 
-        {/* Contact Info */}
-        <div>
-          <h2 className="text-xl font-semibold mb-3">Contact Info</h2>
-          <p className="flex items-center justify-center md:justify-start text-base mb-2">
-            <FontAwesomeIcon icon={faPhone} className="text-green-700 mr-2" /> +92 334 9711129
-          </p>
-          <p className="flex items-center justify-center md:justify-start text-base mb-2">
-            <FontAwesomeIcon icon={faEnvelope} className="text-green-700 mr-2" /> hammadurrehmanse@gmail.com
-          </p>
-          <p className="flex items-center justify-center md:justify-start text-base mb-2">
-            <FontAwesomeIcon icon={faMapMarkerAlt} className="text-green-700 mr-2" /> Lahore, Pakistan
-          </p>
+          {/* Contact Info */}
+          <div>
+            <h2 className="text-xl font-semibold mb-3">Contact Info</h2>
+            <p className="flex items-center justify-center md:justify-start text-base mb-2">
+              <FontAwesomeIcon icon={faPhone} className="text-green-700 mr-2" /> +92 334 9711129
+            </p>
+            <p className="flex items-center justify-center md:justify-start text-base mb-2">
+              <FontAwesomeIcon icon={faEnvelope} className="text-green-700 mr-2" /> hammadurrehmanse@gmail.com
+            </p>
+            <p className="flex items-center justify-center md:justify-start text-base mb-2">
+              <FontAwesomeIcon icon={faMapMarkerAlt} className="text-green-700 mr-2" /> Lahore, Pakistan
+            </p>
 
-          {/* Social Icons */}
-          <div className="flex justify-center md:justify-start gap-5 mt-4 text-2xl">
-            <a href="https://github.com/hammad-umt" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition">
-              <FontAwesomeIcon icon={faGithub} />
-            </a>
-            <a href="https://www.linkedin.com/in/hammad-ur-rehman-b36b8229b/" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition">
-              <FontAwesomeIcon icon={faLinkedin} />
-            </a>
-            <a href="https://www.facebook.com/hmad.kh.k" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition">
-              <FontAwesomeIcon icon={faFacebook} />
-            </a>
-            <a href="https://www.instagram.com/hammad._.khattak/" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition">
-              <FontAwesomeIcon icon={faInstagram} />
-            </a>
+            {/* Social Icons */}
+            <div className="flex justify-center md:justify-start gap-5 mt-4 text-2xl">
+              <a href="https://github.com/hammad-umt" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition">
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
+              <a href="https://www.linkedin.com/in/hammad-ur-rehman-b36b8229b/" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition">
+                <FontAwesomeIcon icon={faLinkedin} />
+              </a>
+              <a href="https://www.facebook.com/hmad.kh.k" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition">
+                <FontAwesomeIcon icon={faFacebook} />
+              </a>
+              <a href="https://www.instagram.com/hammad._.khattak/" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition">
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom */}
-      <div className="text-center text-sm text-gray-800 mt-10 border-t border-gray-600 pt-4">
-        &copy; {new Date().getFullYear()} Made with ❤️ by Hammad Ur Rehman
-      </div>
-    </footer>
+        {/* Bottom */}
+        <div className="text-center text-sm text-gray-800 mt-10 border-t border-gray-600 pt-4">
+          &copy; {new Date().getFullYear()} Made with ❤️ by Hammad Ur Rehman
+        </div>
+      </footer>
+
+      {/* Back to Top: visible only when footer is on screen */}
+      {showTop && (
+        <button 
+          onClick={() => document.querySelector('#home')?.scrollIntoView({ behavior: 'smooth' })}         
+          aria-label="Back to top"
+          className="fixed bottom-6 right-6 bg-gray-800 text-white w-12 h-12
+                     flex items-center justify-center rounded-full shadow-lg
+                     hover:bg-gray-700 transition duration-300"
+        >
+          <FontAwesomeIcon icon={faArrowUp} className="text-xl" />
+        </button>
+      )}
+    </>
   )
 }
 
