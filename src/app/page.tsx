@@ -8,9 +8,12 @@ import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import StickyWhatsapp from "@/components/StickyWhatsapp";
 import ScrollFade from "@/components/ui/AnimateOnScroll";
+import Cursor from "@/components/Cursor";
 export default function HomePage() {
   return (
     <>
+      <Cursor/>
+      <main className="cursor-none">
       <Navbar />
       <section id="home">
       <ScrollFade>
@@ -45,6 +48,7 @@ export default function HomePage() {
       </section>
       <StickyWhatsapp />
       <Footer/>
+      </main>
     </>
   );
 }
