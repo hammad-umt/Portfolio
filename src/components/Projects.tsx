@@ -18,15 +18,31 @@ const techColors: Record<string, string> = {
 
 const Projects = () => {
   const projects = [
+   {
+  id: 0,
+  title: "Drafidox",
+  techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+  description:
+    "Contributed to a major UI revamp of the Drafidox website and updated existing API integrations to ensure they functioned smoothly.",
+  link: "https://www.drafidox.com/"
+},{
+  id: 1,
+  title: "InfinetWorx",
+  techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+  description:
+    "Designed and developed a modern, responsive landing page for a tech company using Next.js and Tailwind CSS.",
+  link: "https://infinetworx.vercel.app/"
+}
+,
     {
-      id:0,
+      id:2,
       title:"Portfolio",
       techUsed: ["Next.js","Tailwind CSS","Typescript","React"],
       description:"A portfolio website built with Next.js and Tailwind CSS.",
       link:"https://github.com/hammad-umt/Portfolio"
     },
     {
-      id: 1,
+      id: 3,
       title: "AI Recipe Finder",
       techUsed: ["HTML","CSS","Javascript","Flask","SQLite","Tailwind CSS", "Gemini API"],
       description:
@@ -34,7 +50,7 @@ const Projects = () => {
       link: "https://github.com/hammad-umt/AI_Recipe_Finder",
     },
     {
-      id: 2,
+      id: 4,
       title: "News App",
       techUsed: ["React", "Tailwind CSS", "NewsAPI"],
       description:
@@ -42,7 +58,7 @@ const Projects = () => {
       link: "https://github.com/hammad-umt/News-App-Using-React",
     },
     {
-      id: 3,
+      id: 5,
       title: "Quiz App",
       techUsed: ["Flutter","Dart","Firebase","Provider","Gemini API"],
       description:
@@ -50,7 +66,7 @@ const Projects = () => {
       link: "https://github.com/hammad-umt/QuizzyApp",
     },
     {
-      id: 4,
+      id: 6,
       title: "Amazon Web Page Clone",
       techUsed: ["HTML", "CSS"],
       description:
@@ -58,7 +74,7 @@ const Projects = () => {
       link: "https://github.com/hammad-umt/Amazon-Clone-Project-Using-HTML-CSS",
     },
     {
-      id:5,
+      id:7,
       title:"Social Links",
       techUsed:["HTML","CSS"],
       description:"A social links website built with HTML and CSS.",
