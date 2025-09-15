@@ -50,7 +50,7 @@ const projects = [
     techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
     description:
       "Personal portfolio to showcase projects, skills, and contact info with responsive design.",
-    link: "https://github.com/hammad-umt/Portfolio",
+    link: "https://hammadurrehman10.netlify.app",
   },
   {
     id: 4,
