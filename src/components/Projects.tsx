@@ -14,96 +14,114 @@ const techColors: Record<string, string> = {
   Firebase: "bg-amber-500",
   Provider: "bg-green-500",
   NewsAPI: "bg-red-500",
+  "Next.js": "bg-purple-500",
+  "Shadcn UI": "bg-emerald-500",
+  TypeScript: "bg-blue-700",
 };
 
-const Projects = () => {
-  const projects = [
-   {
-  id: 0,
-  title: "Drafidox",
-  techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
-  description:
-    "Contributed to a major UI revamp of the Drafidox website and updated existing API integrations to ensure they functioned smoothly.",
-  link: "https://www.drafidox.com/"
-},{
-  id: 1,
-  title: "InfinetWorx",
-  techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
-  description:
-    "Designed and developed a modern, responsive landing page for a tech company using Next.js and Tailwind CSS.",
-  link: "https://infinetworx.vercel.app/"
-}
-,
-    {
-      id:2,
-      title:"Portfolio",
-      techUsed: ["Next.js","Tailwind CSS","Typescript","React"],
-      description:"A portfolio website built with Next.js and Tailwind CSS.",
-      link:"https://github.com/hammad-umt/Portfolio"
-    },
-    {
-      id: 3,
-      title: "AI Recipe Finder",
-      techUsed: ["HTML","CSS","Javascript","Flask","SQLite","Tailwind CSS", "Gemini API"],
-      description:
-        "A web application that empowers users to discover and generate detailed recipes based on available ingredients or dish prompts.",
-      link: "https://github.com/hammad-umt/AI_Recipe_Finder",
-    },
-    {
-      id: 4,
-      title: "News App",
-      techUsed: ["React", "Tailwind CSS", "NewsAPI"],
-      description:
-        "A responsive news app that fetches the latest articles related to Pakistan using NewsAPI.",
-      link: "https://github.com/hammad-umt/News-App-Using-React",
-    },
-    {
-      id: 5,
-      title: "Quiz App",
-      techUsed: ["Flutter","Dart","Firebase","Provider","Gemini API"],
-      description:
-        "An AI-powered quiz app where users choose a subject and get dynamically generated questions, then answer them in real-time.",
-      link: "https://github.com/hammad-umt/QuizzyApp",
-    },
-    {
-      id: 6,
-      title: "Amazon Web Page Clone",
-      techUsed: ["HTML", "CSS"],
-      description:
-        "A responsive clone of the Amazon landing page built with pure HTML and CSS. Focused on practicing layouts, media queries, and responsive design techniques.",
-      link: "https://github.com/hammad-umt/Amazon-Clone-Project-Using-HTML-CSS",
-    },
-    {
-      id:7,
-      title:"Social Links",
-      techUsed:["HTML","CSS"],
-      description:"A social links website built with HTML and CSS.",
-      link:"https://github.com/hammad-umt/Social-Links-Profile"
-    }
-  ];
+const projects = [
+  {
+    id: 0,
+    title: "Umazing",
+    techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React", "Shadcn UI"],
+    description:
+      "Led a full UI revamp including dynamic routing and a detailed product page to enhance navigation and overall user experience.",
+    link: "https://umazing-six.vercel.app/",
+  },
+  {
+    id: 1,
+    title: "Drafidox",
+    techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+    description:
+      "Optimized UI and streamlined API integrations for a smoother user journey.",
+    link: "https://www.drafidox.com/",
+  },
+  {
+    id: 2,
+    title: "InfinetWorx",
+    techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+    description:
+      "Built a modern, responsive landing page for a tech company with clean design and fast performance.",
+    link: "https://infinetworx.vercel.app/",
+  },
+  {
+    id: 3,
+    title: "Portfolio",
+    techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+    description:
+      "Personal portfolio to showcase projects, skills, and contact info with responsive design.",
+    link: "https://github.com/hammad-umt/Portfolio",
+  },
+  {
+    id: 4,
+    title: "AI Recipe Finder",
+    techUsed: ["HTML", "CSS", "Javascript", "Flask", "SQLite", "Tailwind CSS", "Gemini API"],
+    description:
+      "Generates detailed recipes from ingredients using Gemini API with step-by-step instructions.",
+    link: "https://github.com/hammad-umt/AI_Recipe_Finder",
+  },
+  {
+    id: 5,
+    title: "News App",
+    techUsed: ["React", "Tailwind CSS", "NewsAPI"],
+    description:
+      "Responsive app that fetches latest Pakistan-related articles using NewsAPI.",
+    link: "https://github.com/hammad-umt/News-App-Using-React",
+  },
+  {
+    id: 6,
+    title: "Quiz App",
+    techUsed: ["Flutter", "Dart", "Firebase", "Provider", "Gemini API"],
+    description:
+      "AI-powered quiz app with real-time scoring and dynamic questions via Gemini API.",
+    link: "https://github.com/hammad-umt/QuizzyApp",
+  },
+  {
+    id: 7,
+    title: "Amazon Web Page Clone",
+    techUsed: ["HTML", "CSS"],
+    description:
+      "Responsive clone of Amazon landing page focusing on layout and responsiveness.",
+    link: "https://github.com/hammad-umt/Amazon-Clone-Project-Using-HTML-CSS",
+  },
+  {
+    id: 8,
+    title: "Social Links",
+    techUsed: ["HTML", "CSS"],
+    description:
+      "Clean, responsive social links page demonstrating core web-design fundamentals.",
+    link: "https://github.com/hammad-umt/Social-Links-Profile",
+  },
+];
 
+const Projects = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-8 bg-gradient-to-b from-gray-50 to-white">
       {projects.map((project) => (
         <div
           key={project.id}
-          className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between"
+          className="bg-white border border-gray-200 shadow-md rounded-2xl p-8 flex flex-col justify-between
+                     transition-transform duration-500 ease-in-out hover:shadow-xl hover:-translate-y-1 hover:border-yellow-400 hover:bg-gradient-to-r hover:from-yellow-50 hover:to-white"
         >
           <div>
-            <h2 className="text-xl font-bold text-gray-800 mb-2 text-center">
+            <h2 className="text-2xl font-bold text-gray-800 text-center mb-4">
               {project.title}
             </h2>
-            <p className="text-gray-600 mb-3 text-left">{project.description}</p>
+            <p className="text-base text-gray-700 mb-4 leading-relaxed">
+              {project.description}
+            </p>
 
             <div className="mb-4">
-              <span className="font-semibold text-sm text-gray-700 block mb-1">
-                Tech Used:
+              <span className="font-semibold text-gray-700 text-sm block mb-2">
+                Tech Stack
               </span>
-              <ul className="flex flex-wrap gap-2">
-                {project.techUsed.map((tech, index) => (
+              <ul className="flex flex-wrap gap-3">
+                {project.techUsed.map((tech) => (
                   <li
-                    key={index}
-                    className={`${techColors[tech] || "bg-[#F4B400]"} text-white px-3 py-1 rounded-full text-xs font-medium shadow-sm`}
+                    key={tech}
+                    className={`${techColors[tech] || "bg-gray-400"} 
+                                text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm
+                                transition-transform duration-300 transform hover:scale-110 hover:shadow-md`}
                   >
                     {tech}
                   </li>
@@ -116,13 +134,14 @@ const Projects = () => {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block mt-auto text-center bg-[#F4B400] text-white font-semibold py-2 px-4 rounded-lg transition-transform transform hover:scale-105 hover:bg-[#e0a800]"
+            className="mt-auto inline-block text-center bg-yellow-500 text-white font-semibold py-2 px-4 rounded-lg 
+                       transition-transform transform hover:scale-105 hover:bg-yellow-600 hover:ring-2 hover:ring-yellow-400"
           >
             View Project
           </a>
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 
