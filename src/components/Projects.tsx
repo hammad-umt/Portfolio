@@ -26,7 +26,7 @@ const projects = [
     techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React", "Shadcn UI"],
     description:
       "Led a full UI revamp including dynamic routing and a detailed product page to enhance navigation and overall user experience.",
-    link: "https://umazing-six.vercel.app/",
+    link: "https://umazing.shop/",
   },
   {
     id: 1,
