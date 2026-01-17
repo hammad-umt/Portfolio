@@ -1,51 +1,177 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f7fa;
+  --foreground: #1a2332;
+  --primary: #4F46E5;
+  --secondary: #06B6D4;
+  --accent: #EC4899;
+  --success: #10B981;
+  --warning: #F59E0B;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #e2e8f0;
+    --primary: #6366F1;
+    --secondary: #06B6D4;
   }
 }
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --font-sans: 'Poppins', sans-serif;
-  --font-mono: 'Fira Code', monospace; /* optional for code blocks */
+  --background: #f5f7fa;
+  --foreground: #1a2332;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+html {
+  scroll-behavior: smooth;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%234F46E5;stop-opacity:1" /><stop offset="100%" style="stop-color:%2306B6D4;stop-opacity:1" /></linearGradient></defs><circle cx="12" cy="12" r="6" fill="url(%23grad1)"/><circle cx="12" cy="12" r="4" fill="white" opacity="0.6"/><path d="M12 0 L2 8 L8 8 L8 24 L16 24 L16 8 L22 8 Z" fill="%234F46E5"/></svg>') 3 0, auto;
+}
+
+a, button, [role="button"], input[type="submit"], input[type="button"] {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><defs><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%234F46E5;stop-opacity:1" /><stop offset="100%" style="stop-color:%2306B6D4;stop-opacity:1" /></linearGradient></defs><circle cx="12" cy="12" r="8" fill="url(%23grad2)"/><circle cx="12" cy="12" r="5" fill="white" opacity="0.7"/><circle cx="12" cy="12" r="2" fill="%234F46E5"/></svg>') 12 12, pointer;
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(50px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
 
 @keyframes fadeOut {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(50px); }
+  from { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+  to { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+  }
 }
 
 .fade-in {
-  animation: fadeIn 0.5s forwards;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
 .fade-out {
-  animation: fadeOut 0.5s forwards;
+  animation: fadeOut 0.8s ease-out forwards;
+}
+
+.slide-up {
+  animation: slideInUp 0.8s ease-out forwards;
+}
+
+.slide-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.slide-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.8s ease-out forwards;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+@layer components {
+  .animate-slide-in-up {
+    @apply opacity-0;
+    animation: slideInUp 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    @apply opacity-0;
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    @apply opacity-0;
+    animation: slideInRight 0.8s ease-out forwards;
+  }
 }
 
 
@@ -63,21 +189,21 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f4b400; /* primary color as track */
-  margin: 50px 0; /* makes vertical scrollbar shorter */
+  background: #e2e8f0; /* track */
+  margin: 50px 0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d2cbb8; /* thumb color */
-  border-radius: 0;   /* squared edges */
+  background: linear-gradient(180deg, #4F46E5 0%, #06B6D4 100%); /* gradient thumb */
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8ae97; /* darker hover effect */
+  background: linear-gradient(180deg, #6366F1 0%, #0891B2 100%);
 }
 
 /* For Firefox */
 * {
   scrollbar-width: auto; 
-  scrollbar-color: #d2cbb8 #f4b400; /* thumb | track */
+  scrollbar-color: #4F46E5 #e2e8f0;
 }

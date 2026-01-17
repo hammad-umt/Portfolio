@@ -36,7 +36,7 @@ const Education = () => {
       {education.map((edu, index) => (
         <div
           key={index}
-          className="flex flex-col md:flex-row items-center gap-8 p-6 rounded-2xl shadow-md"
+          className="flex flex-col md:flex-row items-center gap-8 p-6 rounded-2xl shadow-md bg-gradient-to-r from-slate-50 to-blue-50 border border-slate-200"
         >
           {/* Image */}
           <div className="w-32 h-32 relative flex-shrink-0">
@@ -50,15 +50,15 @@ const Education = () => {
 
           {/* Text Info */}
           <div className="space-y-2 text-center md:text-left">
-            <h2 className="text-xl font-bold text-gray-900">{edu.type}</h2>
-            <p className="text-gray-700 font-semibold">{edu.school}</p>
-            <p className="text-sm text-gray-600">{edu.degree}</p>
-            <p className="text-sm text-gray-500">{edu.year}</p>
+            <h2 className="text-xl font-bold text-slate-900">{edu.type}</h2>
+            <p className="text-slate-700 font-semibold">{edu.school}</p>
+            <p className="text-sm text-slate-600">{edu.degree}</p>
+            <p className="text-sm text-slate-500">{edu.year}</p>
             <span
-              className={`px-3 py-1 text-sm rounded-full ${
+              className={`px-3 py-1 text-sm rounded-full font-semibold ${
                 edu.status === "Completed"
-                  ? "bg-green-200 text-green-800"
-                  : "bg-yellow-200 text-yellow-800"
+                  ? "bg-green-100 text-green-800"
+                  : "bg-indigo-100 text-indigo-800"
               }`}
             >
               {edu.status}

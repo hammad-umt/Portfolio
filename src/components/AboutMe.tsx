@@ -8,7 +8,7 @@ import Button from "./ui/Button";
 
 const AboutMe = () => {
   return (
-    <div className="flex flex-col md:flex-row bg-gray-100 rounded-2xl shadow-lg p-8 md:p-12 gap-12 md:gap-20 items-start">
+    <div className="flex flex-col md:flex-row bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-lg p-8 md:p-12 gap-12 md:gap-20 items-start border border-slate-200">
       
       {/* Profile Image */}
       <div className="flex-shrink-0">
@@ -23,51 +23,51 @@ const AboutMe = () => {
 
       {/* About Text */}
       <div className="max-w-2xl space-y-6">
-        <h1 className="text-4xl text-gray-900 font-bold flex items-center gap-2">
+        <h1 className="text-4xl text-slate-900 font-bold flex items-center gap-2">
           <FontAwesomeIcon icon={faUser} />
-          About <span className="text-[#F4B400]">Me</span>
+          About <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Me</span>
         </h1>
 
-        <p className="text-2xl text-gray-900 font-bold">I&apos;m Hammad</p>
-        <p className="text-lg text-gray-700 font-semibold">Software Engineer</p>
+        <p className="text-2xl text-slate-900 font-bold">I&apos;m Hammad</p>
+        <p className="text-lg text-slate-700 font-semibold">Software Engineer</p>
 
-        <p className="text-gray-800 leading-relaxed">
+        <p className="text-slate-800 leading-relaxed">
           As a passionate Software Engineer based in Lahore, Pakistan, I enjoy
           turning ideas into functional and visually engaging solutions. My
           primary focus is frontend development with React and Next.js, while
           also exploring mobile apps using Flutter.
         </p>
 
-        <p className="text-gray-800 leading-relaxed">
+        <p className="text-slate-800 leading-relaxed">
           Over time, what started as curiosity has become my full-time
           enthusiasm. I’ve worked on websites and MVPs with a strong focus on
           usability, scalability, and performance.
         </p>
 
-        <p className="text-gray-800 leading-relaxed">
+        <p className="text-slate-800 leading-relaxed">
           For me, coding isn’t just a profession — it’s about solving real-world
           problems and creating products people can actually use and benefit
           from. I keep learning new technologies because innovation never stops,
           and neither do I.
         </p>
 
-        <div className="pt-4 border-t space-y-2 text-sm md:text-base">
+        <div className="pt-4 border-t border-slate-300 space-y-2 text-sm md:text-base">
           <p>
-            <span className="text-[#F4B400] font-bold">Email: </span>
-            <span className="text-gray-900">hammadurrehmanse@gmail.com</span>
+            <span className="text-indigo-600 font-bold">Email: </span>
+            <span className="text-slate-900">hammadurrehmanse@gmail.com</span>
           </p>
           <p>
-            <span className="text-[#F4B400] font-bold">Place: </span>
-            <span className="text-gray-900">Lahore, Pakistan - 54792</span>
+            <span className="text-indigo-600 font-bold">Place: </span>
+            <span className="text-slate-900">Lahore, Pakistan - 54792</span>
           </p>
           <p>
-            <span className="text-[#F4B400] font-bold">Phone: </span>
-            <span className="text-gray-900">+92 334-971-1129</span>
+            <span className="text-indigo-600 font-bold">Phone: </span>
+            <span className="text-slate-900">+92 334-971-1129</span>
           </p>
         </div>
 
         <Button
-  className="bg-[#F4B400] text-white font-semibold flex items-center gap-2 rounded-xl hover:text-black transition-transform hover:scale-105 active:scale-95 px-3 py-1.5 text-sm md:px-6 md:py-4 md:text-base"
+  className="bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-semibold flex items-center gap-2 rounded-xl hover:text-white transition-transform hover:scale-105 active:scale-95 px-3 py-1.5 text-sm md:px-6 md:py-4 md:text-base"
   title="Resume"
   icon={faFile}
   onClick={() => {

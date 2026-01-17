@@ -36,10 +36,10 @@ const Contact = () => {
   };
 
   return (
-    <div className="w-full py-16 px-4 md:px-12 lg:px-20 bg-[#fce7af]">
-      <h2 className="flex items-center justify-center text-3xl md:text-4xl font-bold text-gray-900 mb-12 gap-2">
-        <Headset className="w-10 h-10 text-[#F4B400]" />
-        Get In <span className="text-[#F4B400]">Touch</span>
+    <div className="w-full py-16 px-4 md:px-12 lg:px-20 bg-gradient-to-br from-indigo-50 to-cyan-50">
+      <h2 className="flex items-center justify-center text-3xl md:text-4xl font-bold text-slate-900 mb-12 gap-2">
+        <Headset className="w-10 h-10 text-indigo-600" />
+        Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Touch</span>
       </h2>
 
       <div className="flex flex-col md:flex-row items-center gap-12">
@@ -56,10 +56,10 @@ const Contact = () => {
         <form
           ref={form}
           onSubmit={handleSubmit}
-          className="md:w-1/2 w-full bg-white shadow-md rounded-2xl p-6 flex flex-col gap-4"
+          className="md:w-1/2 w-full bg-white shadow-md rounded-2xl p-6 flex flex-col gap-4 border border-slate-200"
         >
-          <div className="flex items-center gap-3 border border-gray-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-[#F4B400]">
-            <User className="text-gray-400 w-5 h-5" />
+          <div className="flex items-center gap-3 border border-slate-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-indigo-600">
+            <User className="text-slate-400 w-5 h-5" />
             <input
               name="name"
               type="text"
@@ -69,8 +69,8 @@ const Contact = () => {
             />
           </div>
 
-          <div className="flex items-center gap-3 border border-gray-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-[#F4B400]">
-            <Mail className="text-gray-400 w-5 h-5" />
+          <div className="flex items-center gap-3 border border-slate-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-indigo-600">
+            <Mail className="text-slate-400 w-5 h-5" />
             <input
               name="email"
               type="email"
@@ -80,8 +80,8 @@ const Contact = () => {
             />
           </div>
 
-          <div className="flex items-center gap-3 border border-gray-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-[#F4B400]">
-            <Phone className="text-gray-400 w-5 h-5" />
+          <div className="flex items-center gap-3 border border-slate-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-indigo-600">
+            <Phone className="text-slate-400 w-5 h-5" />
             <input
               name="phone"
               type="tel"
@@ -91,8 +91,8 @@ const Contact = () => {
             />
           </div>
 
-          <div className="flex items-start gap-3 border border-gray-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-[#F4B400]">
-            <MessageSquare className="text-gray-400 w-5 h-5 mt-2" />
+          <div className="flex items-start gap-3 border border-slate-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-indigo-600">
+            <MessageSquare className="text-slate-400 w-5 h-5 mt-2" />
             <textarea
               name="message"
               rows={5}
