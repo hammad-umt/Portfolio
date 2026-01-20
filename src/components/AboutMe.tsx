@@ -25,7 +25,7 @@ const AboutMe = () => {
       <div className="max-w-2xl space-y-6">
         <h1 className="text-4xl text-slate-900 font-bold flex items-center gap-2">
           <FontAwesomeIcon icon={faUser} />
-          About <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Me</span>
+          About <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500">Me</span>
         </h1>
 
         <p className="text-2xl text-slate-900 font-bold">I&apos;m Hammad</p>
@@ -67,7 +67,7 @@ const AboutMe = () => {
         </div>
 
         <Button
-  className="bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-semibold flex items-center gap-2 rounded-xl hover:text-white transition-transform hover:scale-105 active:scale-95 px-3 py-1.5 text-sm md:px-6 md:py-4 md:text-base"
+  className="bg-linear-to-r from-indigo-600 to-cyan-500 text-white font-semibold flex items-center gap-2 rounded-xl hover:text-white transition-transform hover:scale-105 active:scale-95 px-3 py-1.5 text-sm md:px-6 md:py-4 md:text-base"
   title="Resume"
   icon={faFile}
   onClick={() => {

@@ -105,7 +105,7 @@ const Contact = () => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="flex items-center gap-2 bg-[#F4B400] text-white font-semibold py-3 px-6 rounded-xl hover:bg-yellow-500 transition-colors"
+              className="flex items-center gap-2 bg-linear-to-r from-indigo-600 to-cyan-500 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
             >
               Send
               <Send className="w-5 h-5" />

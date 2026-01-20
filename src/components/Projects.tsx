@@ -111,7 +111,7 @@ const Projects = () => {
       {/* Section Header */}
       <div className="max-w-6xl mx-auto mb-16 slide-up">
         <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-          Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Projects</span>
+          Featured <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500">Projects</span>
         </h1>
         <p className="text-lg text-slate-600 max-w-2xl">
           A collection of my best work showcasing modern web development, full-stack applications, and mobile solutions. Each project demonstrates my commitment to clean code and user-focused design.
@@ -158,7 +158,7 @@ const Projects = () => {
             </div>
 
             {/* Divider */}
-            <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+            <div className="h-px bg-linear-to-r from-transparent via-slate-200 to-transparent"></div>
 
             {/* CTA Button */}
             <div className="p-8 pt-6">
@@ -166,7 +166,7 @@ const Projects = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-700 hover:to-cyan-600 text-white font-semibold py-3 px-6 rounded-xl 
+                className="w-full inline-flex items-center justify-center gap-2 bg-linear-to-r from-indigo-600 to-cyan-500 hover:from-indigo-700 hover:to-cyan-600 text-white font-semibold py-3 px-6 rounded-xl 
                            transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-indigo-400/50 active:scale-95 group/btn"
               >
                 View Project

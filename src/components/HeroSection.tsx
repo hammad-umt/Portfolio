@@ -77,17 +77,17 @@ const HeroSection = () => {
       <section className="flex flex-col items-start justify-center text-slate-900 space-y-4 slide-left">
         <h1 className="text-xl md:text-5xl font-bold animate-slide-in-up">Hi There,</h1>
         <h1 className="text-xl md:text-5xl font-bold animate-slide-in-up" style={{ animationDelay: "0.1s" }}>
-          I&apos;m Hammad Ur <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Rehman</span>
+          I&apos;m Hammad Ur <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500">Rehman</span>
         </h1>
         <h2 className="text-md md:text-3xl sm:text-lg font-semibold animate-slide-in-up" style={{ animationDelay: "0.2s" }}>
-          I&apos;m into <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">{text}</span>
+          I&apos;m into <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500">{text}</span>
           <span className="animate-pulse">|</span>
         </h2>
         <div className="animate-slide-in-up" style={{ animationDelay: "0.3s" }}>
           <Button
             spanName="animate-bounce"
             icon={faArrowDown}
-            className=" bg-gradient-to-r from-indigo-600 to-cyan-500
+            className=" bg-linear-to-r from-indigo-600 to-cyan-500
                     text-white font-semibold 
                     flex items-center gap-2 
                     rounded-full transition-transform 

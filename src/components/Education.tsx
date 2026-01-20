@@ -36,7 +36,7 @@ const Education = () => {
       {education.map((edu, index) => (
         <div
           key={index}
-          className="flex flex-col md:flex-row items-center gap-8 p-6 rounded-2xl shadow-md bg-gradient-to-r from-slate-50 to-blue-50 border border-slate-200"
+          className="flex flex-col md:flex-row items-center gap-8 p-6 rounded-2xl shadow-md bg-linear-to-r from-slate-50 to-blue-50 border border-slate-200"
         >
           {/* Image */}
           <div className="w-32 h-32 relative flex-shrink-0">

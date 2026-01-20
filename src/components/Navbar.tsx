@@ -31,7 +31,7 @@ const Navbar = () => {
         onClick={() => handleScroll("home")}
         className="flex items-center gap-3 text-xl md:text-2xl font-bold tracking-wider text-slate-900 hover:text-indigo-600 transition-all duration-300 group"
       >
-        <div className="bg-gradient-to-br from-indigo-600 to-cyan-500 p-2.5 rounded-lg group-hover:shadow-lg group-hover:shadow-indigo-300/50 transition-all transform group-hover:scale-110">
+        <div className="bg-linear-to-br from-indigo-600 to-cyan-500 p-2.5 rounded-lg group-hover:shadow-lg group-hover:shadow-indigo-300/50 transition-all transform group-hover:scale-110">
           <Image
             className="rounded"
             src="/file.svg"
@@ -41,7 +41,7 @@ const Navbar = () => {
           />
         </div>
         <span className="hidden sm:inline text-slate-900">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500 font-bold">H</span><span className="font-semibold">ammad</span>
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500 font-bold">H</span><span className="font-semibold">ammad</span>
         </span>
       </button>
 
@@ -54,7 +54,7 @@ const Navbar = () => {
               className="text-slate-700 text-base px-4 py-2 transition-all duration-200 group-hover:text-indigo-600 relative hover:bg-slate-100/60 rounded-lg"
             >
               {nav.name}
-              <span className="absolute left-0 bottom-1 w-0 h-1 bg-gradient-to-r from-indigo-600 to-cyan-500 rounded-full transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute left-0 bottom-1 w-0 h-1 bg-linear-to-r from-indigo-600 to-cyan-500 rounded-full transition-all duration-300 group-hover:w-full"></span>
             </button>
           </li>
         ))}
@@ -66,7 +66,7 @@ const Navbar = () => {
           href="https://github.com/hammad-umt"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-indigo-400/50 transition-all transform hover:scale-105 active:scale-95"
+          className="inline-flex items-center gap-2 px-6 py-2.5 bg-linear-to-r from-indigo-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-indigo-400/50 transition-all transform hover:scale-105 active:scale-95"
         >
           GitHub
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -99,7 +99,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Links */}
-          <div className="flex flex-col flex-grow p-6 gap-2">
+          <div className="flex flex-col grow p-6 gap-2">
             {navLinks.map((nav) => (
               <button
                 key={nav.id}
@@ -117,7 +117,7 @@ const Navbar = () => {
               href="https://github.com/hammad-umt"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-linear-to-r from-indigo-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
             >
               View GitHub
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

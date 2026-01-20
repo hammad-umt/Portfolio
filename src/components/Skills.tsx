@@ -43,7 +43,7 @@ const Skills = () => {
     <section className="bg-gradient-to-br from-indigo-50 via-cyan-50 to-slate-50 p-10 rounded-2xl shadow-xl border border-indigo-100">
       {/* Heading */}
       <h1 className="text-center text-4xl font-extrabold text-slate-900">
-        Skills & <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Abilities</span>
+        Skills & <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500">Abilities</span>
       </h1>
 
       {/* Skills Grid */}

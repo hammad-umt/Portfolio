@@ -42,7 +42,7 @@ const Footer = () => {
           
           {/* Branding */}
           <div className="space-y-3">
-            <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Hammad</h1>
+            <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500">Hammad</h1>
             <p className="text-sm leading-relaxed text-slate-600">
               Full-stack developer creating beautiful and functional web experiences. Let&apos;s build something amazing together! 🚀
             </p>
@@ -107,7 +107,7 @@ const Footer = () => {
         <button 
           onClick={() => document.querySelector('#home')?.scrollIntoView({ behavior: 'smooth' })}         
           aria-label="Back to top"
-          className="fixed bottom-6 right-6 bg-gradient-to-r from-indigo-600 to-cyan-500 text-white w-12 h-12
+          className="fixed bottom-6 right-6 bg-linear-to-r from-indigo-600 to-cyan-500 text-white w-12 h-12
                      flex items-center justify-center rounded-full shadow-lg hover:shadow-xl hover:shadow-indigo-300/50
                      hover:scale-110 transition-all duration-300 active:scale-95"
         >
