@@ -27,7 +27,7 @@ const Contact = () => {
       else
         toast.error(result.error, { style: { backgroundColor: "#ef4444" } });
     } catch (err) {
-      toast.error("Error sending message \n Kindly WhatsApp us", {
+      toast.error("Oops! Something went wrong while sending your message.\nPlease reach out to us on WhatsApp.", {
         style: { backgroundColor: "#ef4444" },
       });
     }
