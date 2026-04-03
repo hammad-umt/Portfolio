@@ -1,119 +1,116 @@
 "use client";
 
-import Image from "next/image";
-import React, { useRef } from "react";
-import { User, Mail, MessageSquare, Send, Phone, Headset } from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
+import { User, Mail, MessageSquare, Send, Phone } from "lucide-react";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
+
+// Initialize EmailJS with environment variable
+if (typeof window !== 'undefined') {
+  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
+}
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.current) return;
 
-    const formData = new FormData(form.current);
-    const data = Object.fromEntries(formData); // {name, email, phone, message}
+    setIsLoading(true);
 
     try {
-      const res = await fetch("/.netlify/functions/sendEmail", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+        form.current
+      );
 
-      const result = await res.json();
-      if (res.ok)
-        toast.success(result.message, { style: { backgroundColor: "#22c55e" } });
-      else
-        toast.error(result.error, { style: { backgroundColor: "#ef4444" } });
+      toast.success("Message sent successfully! I'll get back to you soon.", {
+        style: { backgroundColor: "#22c55e" },
+      });
+      form.current.reset();
     } catch (err) {
-      toast.error("Oops! Something went wrong while sending your message.\nPlease reach out to us on WhatsApp.", {
+      console.error("EmailJS Error:", err);
+      toast.error("Failed to send message. Please try again or contact me on WhatsApp.", {
         style: { backgroundColor: "#ef4444" },
       });
+    } finally {
+      setIsLoading(false);
     }
-
-    form.current.reset();
   };
 
   return (
-    <div className="w-full py-16 px-4 md:px-12 lg:px-20 bg-gradient-to-br from-indigo-50 to-cyan-50">
-      <h2 className="flex items-center justify-center text-3xl md:text-4xl font-bold text-slate-900 mb-12 gap-2">
-        <Headset className="w-10 h-10 text-indigo-600" />
-        Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Touch</span>
-      </h2>
-
-      <div className="flex flex-col md:flex-row items-center gap-12">
-        <div className="md:w-1/2 flex justify-center">
-          <Image
-            src="/images/contactus.jpg"
-            width={500}
-            height={500}
-            alt="Contact Us"
-            className="rounded-xl shadow-lg"
-          />
+    <section id="contact" className="py-24 px-6 md:px-8 bg-slate-950">
+      <div className="max-w-2xl mx-auto">
+        <div className="mb-12 text-center">
+          <h2 className="text-5xl md:text-6xl font-bold mb-4">
+            <span className="bg-linear-to-r from-indigo-400 to-blue-400 text-transparent bg-clip-text">Let's Talk</span>
+          </h2>
+          <p className="text-gray-400 text-base">Have a question? Drop me a message and I'll get back to you ASAP.</p>
         </div>
 
         <form
           ref={form}
           onSubmit={handleSubmit}
-          className="md:w-1/2 w-full bg-white shadow-md rounded-2xl p-6 flex flex-col gap-4 border border-slate-200"
+          className="space-y-4"
         >
-          <div className="flex items-center gap-3 border border-slate-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-indigo-600">
-            <User className="text-slate-400 w-5 h-5" />
+          <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg p-3 focus-within:border-indigo-500/50 transition-colors">
+            <User className="text-indigo-400 w-5 h-5 shrink-0" />
             <input
-              name="name"
+              name="user_name"
               type="text"
-              placeholder="Name"
-              className="flex-1 outline-none"
+              placeholder="Your Name"
+              className="flex-1 bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
               required
             />
           </div>
 
-          <div className="flex items-center gap-3 border border-slate-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-indigo-600">
-            <Mail className="text-slate-400 w-5 h-5" />
+          <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg p-3 focus-within:border-indigo-500/50 transition-colors">
+            <Mail className="text-indigo-400 w-5 h-5 shrink-0" />
             <input
-              name="email"
+              name="user_email"
               type="email"
-              placeholder="Email"
-              className="flex-1 outline-none"
+              placeholder="your@email.com"
+              className="flex-1 bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
               required
             />
           </div>
 
-          <div className="flex items-center gap-3 border border-slate-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-indigo-600">
-            <Phone className="text-slate-400 w-5 h-5" />
+          <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg p-3 focus-within:border-indigo-500/50 transition-colors">
+            <Phone className="text-indigo-400 w-5 h-5 shrink-0" />
             <input
-              name="phone"
+              name="user_phone"
               type="tel"
-              placeholder="Phone"
-              className="flex-1 outline-none"
+              placeholder="Your Phone"
+              className="flex-1 bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
               required
             />
           </div>
 
-          <div className="flex items-start gap-3 border border-slate-300 rounded-xl p-3 focus-within:ring-2 focus-within:ring-indigo-600">
-            <MessageSquare className="text-slate-400 w-5 h-5 mt-2" />
+          <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-lg p-3 focus-within:border-indigo-500/50 transition-colors">
+            <MessageSquare className="text-indigo-400 w-5 h-5 mt-1 shrink-0" />
             <textarea
               name="message"
-              rows={5}
-              placeholder="Message"
-              className="flex-1 outline-none resize-none"
+              rows={4}
+              placeholder="Your message..."
+              className="flex-1 bg-transparent outline-none text-white placeholder:text-gray-500 resize-none text-sm"
               required
             />
           </div>
 
-          <div className="flex justify-end">
-            <button
-              type="submit"
-              className="flex items-center gap-2 bg-linear-to-r from-indigo-600 to-cyan-500 text-white font-semibold py-3 px-6 rounded-xl transition-colors"
-            >
-              Send
-              <Send className="w-5 h-5" />
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-2 px-6 rounded-lg transition-colors mt-6 text-sm"
+          >
+            <Send className="w-4 h-4" />
+            {isLoading ? "Sending..." : "Send Message"}
+          </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

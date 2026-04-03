@@ -1,49 +1,23 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import Button from "./ui/Button";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faGithub,
-  faInstagram,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-const socialLinks = [
-  {
-    href: "https://github.com/hammad-umt",
-    icon: faGithub,
-    label: "GitHub",
-  },
-  {
-    href: "https://www.linkedin.com/in/hammad-ur-rehman-b36b8229b/",
-    icon: faLinkedin,
-    label: "LinkedIn",
-  },
-  {
-    href: "https://www.facebook.com/hmad.kh.k",
-    icon: faFacebook,
-    label: "Facebook",
-  },
-  {
-    href: "https://www.instagram.com/hammad._.khattak/",
-    icon: faInstagram,
-    label: "Instagram",
-  },
-];
-const professionList = [
-  "Frontend Web Developement",
-  "Flutter Developement",
-  "React JS Development",
-  "Next JS Development",
-];
 
 const HeroSection = () => {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopIndex, setLoopIndex] = useState(0);
-  const [speed, setSpeed] = useState(100); // typing speed (default)
+  const [speed, setSpeed] = useState(100);
+  
+  const professionList = [
+    "Full-Stack Development",
+    "ASP.NET Core",
+    "React & Next.js",
+    "Building REST APIs",
+    "Clean Code",
+  ];
+
   useEffect(() => {
     const handleTyping = () => {
       const current = professionList[loopIndex % professionList.length];
@@ -51,99 +25,135 @@ const HeroSection = () => {
         ? current.substring(0, text.length - 1)
         : current.substring(0, text.length + 1);
       setText(updatedText);
-      // Adjust speed
+
       if (isDeleting) {
-        setSpeed(50); // faster delete
+        setSpeed(50);
       } else {
-        setSpeed(80); // faster typing
+        setSpeed(80);
       }
-      // When word completes
+
       if (!isDeleting && updatedText === current) {
-        setTimeout(() => setIsDeleting(true), 1000); // pause before deleting
-      }
-      // When word deleted fully
-      else if (isDeleting && updatedText === "") {
+        setTimeout(() => setIsDeleting(true), 1500);
+      } else if (isDeleting && updatedText === "") {
         setIsDeleting(false);
         setLoopIndex((prev) => prev + 1);
       }
     };
+
     const timer = setTimeout(handleTyping, speed);
     return () => clearTimeout(timer);
-  }, [text, isDeleting, loopIndex, speed]);
+  }, [text, isDeleting, loopIndex, speed, professionList]);
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-around h-screen px-6 md:px-20">
-      {/* Text Section */}
-      <section className="flex flex-col items-start justify-center text-slate-900 space-y-4 slide-left">
-        <h1 className="text-xl md:text-5xl font-bold animate-slide-in-up">Hi There,</h1>
-        <h1 className="text-xl md:text-5xl font-bold animate-slide-in-up" style={{ animationDelay: "0.1s" }}>
-          I&apos;m Hammad Ur <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500">Rehman</span>
-        </h1>
-        <h2 className="text-md md:text-3xl sm:text-lg font-semibold animate-slide-in-up" style={{ animationDelay: "0.2s" }}>
-          I&apos;m into <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500">{text}</span>
-          <span className="animate-pulse">|</span>
-        </h2>
-        <div className="animate-slide-in-up" style={{ animationDelay: "0.3s" }}>
-          <Button
-            spanName="animate-bounce"
-            icon={faArrowDown}
-            className=" bg-linear-to-r from-indigo-600 to-cyan-500
-                    text-white font-semibold 
-                    flex items-center gap-2 
-                    rounded-full transition-transform 
-                    hover:scale-105 active:scale-95
-                    px-3 py-1.5 text-sm  
-                    hover:text-white   /* 📱 mobile size */
-                    md:px-6 md:py-4 md:text-base /* 💻 bigger screens */"
-            title={"About Me"}
-            onClick={function (): void {
-              document
-                .querySelector("#about")
-                ?.scrollIntoView({ behavior: "smooth", block: "start" ,});
-            }}
-          />
-        </div>
-        <ul className="flex gap-5 text-2xl py-4 animate-slide-in-up" style={{ animationDelay: "0.4s" }}>
-          {socialLinks.map(({ href, icon, label }, index) => (
-            <li 
-              key={label} 
-              style={{ animationDelay: `${0.4 + index * 0.1}s` }} 
-              className="animate-slide-in-up"
-            >
+    <section id="home" className="min-h-screen flex items-center py-24 px-6 md:px-8 bg-linear-to-br from-slate-900 via-indigo-900/30 to-slate-900">
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left: Text Content */}
+          <div className="space-y-8 animate-slide-in-left">
+            {/* Available Badge */}
+            <div className="flex items-center gap-2 w-fit">
+              <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
+              <span className="text-sm text-gray-300 font-medium">Available for work</span>
+            </div>
+
+            {/* Name */}
+            <div className="space-y-4">
+              <h1 className="text-6xl md:text-7xl font-bold leading-tight">
+                <span className="text-gradient">Hammad</span>
+                <br />
+                <span className="text-white">Ur Rehman</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-400 font-light">
+                I'm into <span className="inline-block text-indigo-400 font-semibold min-w-max">{text}<span className="text-indigo-400 animate-pulse">|</span></span>
+              </p>
+            </div>
+
+            {/* Description */}
+            <p className="text-gray-400 text-lg leading-relaxed max-w-lg">
+              A final-year Software Engineering student building production-grade applications with expertise in full-stack development, cloud platforms, and modern web technologies.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <button
+                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 text-center"
+              >
+                View Projects
+              </button>
               <a
-                className="group relative w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-indigo-600 to-cyan-500 text-white transition-all duration-300 hover:scale-125 hover:shadow-2xl hover:shadow-indigo-500/50 active:scale-95"
-                href={href}
+                href="/resume/Hammad_Resume.pdf"
+                download="Hammad_Resume.pdf"
+                className="px-8 py-3 border border-white/20 hover:border-white/40 text-white font-semibold rounded-full transition-all duration-300 hover:bg-white/5 text-center"
+              >
+                Download Resume
+              </a>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-4 pt-4">
+              <a
+                href="https://github.com/hammad-umt"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={label}
-                title={label}
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-indigo-600/30 hover:border-indigo-500 border border-white/20 transition-all duration-300 text-gray-300 hover:text-white"
+                title="GitHub"
               >
-                {/* Background glow effect on hover */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-400 to-cyan-400 opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-300 -z-10" />
-                
-                {/* Icon */}
-                <FontAwesomeIcon icon={icon} className="text-lg z-10" />
-                
-                {/* Hover label */}
-                <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 text-sm font-semibold text-slate-900 bg-white px-3 py-1 rounded-full whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  {label}
-                </span>
+                <FontAwesomeIcon icon={faGithub} className="text-lg" />
               </a>
-            </li>
-          ))}
-        </ul>
-      </section>
+              <a
+                href="https://www.linkedin.com/in/hammad-ur-rehman-b36b8229b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-indigo-600/30 hover:border-indigo-500 border border-white/20 transition-all duration-300 text-gray-300 hover:text-white"
+                title="LinkedIn"
+              >
+                <FontAwesomeIcon icon={faLinkedin} className="text-lg" />
+              </a>
+            </div>
+          </div>
 
-      {/* Image Section */}
-      <Image
-        className="rounded-full shadow-lg scale-in hover:float"
-        src="/myCartoon.png"
-        alt="My Image"
-        height={400}
-        width={400}
-        priority
-      />
-    </div>
+          {/* Right: Profile Image */}
+          <div className="flex justify-center animate-slide-in-right">
+            <div className="relative w-80 h-80 md:w-96 md:h-96">
+              {/* Glow Ring */}
+              <div className="absolute inset-0 rounded-full bg-linear-to-br from-indigo-500/20 to-transparent blur-3xl"></div>
+              
+              {/* Profile Image */}
+              <Image
+                src="/myCartoon.png"
+                alt="Hammad Ur Rehman"
+                width={400}
+                height={400}
+                priority
+                className="w-full h-full rounded-full object-cover border-2 border-indigo-500/30 shadow-2xl"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="flex justify-center mt-20 animate-bounce">
+          <button
+            onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+            className="text-gray-400 hover:text-white transition-colors"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .text-gradient {
+          background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+      `}</style>
+    </section>
   );
 };
 
