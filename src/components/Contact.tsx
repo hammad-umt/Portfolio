@@ -23,7 +23,7 @@ const Contact = () => {
         message: String(formData.get("message") || ""),
       };
 
-      const response = await fetch("/.netlify/functions/sendEmail", {
+      const response = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

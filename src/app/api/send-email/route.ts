@@ -1,12 +1,11 @@
-export async function handler(event) {
+import { NextResponse } from "next/server";
+
+export async function POST(request: Request) {
   try {
-    const { name, email, phone, message } = JSON.parse(event.body || "{}");
+    const { name, email, phone, message } = await request.json();
 
     if (!name || !email || !message) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Missing required fields" }),
-      };
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
     const serviceId = (process.env.EMAILJS_SERVICE_ID || "").trim();
@@ -15,12 +14,13 @@ export async function handler(event) {
     const privateKey = ((process.env.EMAILJS_PRIVATE_KEY || process.env.EMAILJS_ACCESS_TOKEN) || "").trim();
 
     if (!serviceId || !templateId || !publicKey) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({
-          error: "Email service is not configured. Missing EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, or EMAILJS_PUBLIC_KEY.",
-        }),
-      };
+      return NextResponse.json(
+        {
+          error:
+            "Email service is not configured. Missing EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, or EMAILJS_PUBLIC_KEY.",
+        },
+        { status: 500 }
+      );
     }
 
     const payload = {
@@ -28,7 +28,6 @@ export async function handler(event) {
       template_id: templateId,
       user_id: publicKey,
       ...(privateKey ? { accessToken: privateKey } : {}),
-      // Send both naming styles so either template variable set can work.
       template_params: {
         name,
         email,
@@ -49,29 +48,27 @@ export async function handler(event) {
     if (!response.ok) {
       const text = await response.text();
       const lowerText = text.toLowerCase();
-      const strictModeMissingKey = text.toLowerCase().includes("strict mode") && text.toLowerCase().includes("private key");
-      const gmailInvalidGrant = text.toLowerCase().includes("gmail_api") && text.toLowerCase().includes("invalid grant");
+      const strictModeMissingKey = lowerText.includes("strict mode") && lowerText.includes("private key");
+      const gmailInvalidGrant = lowerText.includes("gmail_api") && lowerText.includes("invalid grant");
       const accountNotFound = lowerText.includes("account not found");
-      return {
-        statusCode: 500,
-        body: JSON.stringify({
+
+      return NextResponse.json(
+        {
           error: strictModeMissingKey
             ? "EmailJS strict mode is enabled. Add EMAILJS_PRIVATE_KEY in Netlify environment variables."
             : gmailInvalidGrant
               ? "EmailJS Gmail connection expired. Reconnect your Gmail service in EmailJS dashboard and redeploy."
               : accountNotFound
-                ? "EmailJS account not found. Ensure EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, and EMAILJS_TEMPLATE_ID are from the same EmailJS account in Netlify env vars."
-              : text,
-        }),
-      };
+                ? "EmailJS account not found. Ensure EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, and EMAILJS_TEMPLATE_ID are from the same EmailJS account."
+                : text,
+        },
+        { status: 500 }
+      );
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: "Message sent successfully" }),
-    };
-  } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    return NextResponse.json({ message: "Message sent successfully" }, { status: 200 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unexpected error";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
-  
