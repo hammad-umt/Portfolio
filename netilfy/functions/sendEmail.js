@@ -27,7 +27,7 @@ export async function handler(event) {
       service_id: serviceId,
       template_id: templateId,
       user_id: publicKey,
-      ...(privateKey ? { accessToken: privateKey, private_key: privateKey } : {}),
+      ...(privateKey ? { accessToken: privateKey } : {}),
       // Send both naming styles so either template variable set can work.
       template_params: {
         name,
