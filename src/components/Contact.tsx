@@ -1,14 +1,8 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { User, Mail, MessageSquare, Send, Phone } from "lucide-react";
 import { toast } from "sonner";
-import emailjs from "@emailjs/browser";
-
-// Initialize EmailJS with environment variable
-if (typeof window !== 'undefined') {
-  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
-}
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -21,11 +15,24 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
-      await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
-        form.current
-      );
+      const formData = new FormData(form.current);
+      const payload = {
+        name: String(formData.get("name") || ""),
+        email: String(formData.get("email") || ""),
+        phone: String(formData.get("phone") || ""),
+        message: String(formData.get("message") || ""),
+      };
+
+      const response = await fetch("/.netlify/functions/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({ error: "Failed to send message" }));
+        throw new Error(data.error || "Failed to send message");
+      }
 
       toast.success("Message sent successfully! I'll get back to you soon.", {
         style: { backgroundColor: "#22c55e" },
@@ -59,7 +66,7 @@ const Contact = () => {
           <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg p-3 focus-within:border-indigo-500/50 transition-colors">
             <User className="text-indigo-400 w-5 h-5 shrink-0" />
             <input
-              name="user_name"
+              name="name"
               type="text"
               placeholder="Your Name"
               className="flex-1 bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
@@ -70,7 +77,7 @@ const Contact = () => {
           <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg p-3 focus-within:border-indigo-500/50 transition-colors">
             <Mail className="text-indigo-400 w-5 h-5 shrink-0" />
             <input
-              name="user_email"
+              name="email"
               type="email"
               placeholder="your@email.com"
               className="flex-1 bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
@@ -81,7 +88,7 @@ const Contact = () => {
           <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg p-3 focus-within:border-indigo-500/50 transition-colors">
             <Phone className="text-indigo-400 w-5 h-5 shrink-0" />
             <input
-              name="user_phone"
+              name="phone"
               type="tel"
               placeholder="Your Phone"
               className="flex-1 bg-transparent outline-none text-white placeholder:text-gray-500 text-sm"
