@@ -39,8 +39,8 @@ const Contact = () => {
       });
       form.current.reset();
     } catch (err) {
-      console.error("EmailJS Error:", err);
-      toast.error("Failed to send message. Please try again or contact me on WhatsApp.", {
+      const message = err instanceof Error ? err.message : "Failed to send message";
+      toast.error(`${message}. Please try again or contact me on WhatsApp.`, {
         style: { backgroundColor: "#ef4444" },
       });
     } finally {

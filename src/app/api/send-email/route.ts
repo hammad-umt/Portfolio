@@ -8,16 +8,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const serviceId = (process.env.EMAILJS_SERVICE_ID || "").trim();
-    const templateId = (process.env.EMAILJS_TEMPLATE_ID || "").trim();
-    const publicKey = (process.env.EMAILJS_PUBLIC_KEY || "").trim();
-    const privateKey = ((process.env.EMAILJS_PRIVATE_KEY || process.env.EMAILJS_ACCESS_TOKEN) || "").trim();
+    const serviceId = (process.env.EMAILJS_SERVICE_ID || process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "").trim();
+    const templateId = (process.env.EMAILJS_TEMPLATE_ID || process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "").trim();
+    const publicKey = (process.env.EMAILJS_PUBLIC_KEY || process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "").trim();
+    const privateKey = (
+      process.env.EMAILJS_PRIVATE_KEY ||
+      process.env.EMAILJS_ACCESS_TOKEN ||
+      process.env.NEXT_PUBLIC_EMAILJS_PRIVATE_KEY ||
+      ""
+    ).trim();
 
     if (!serviceId || !templateId || !publicKey) {
       return NextResponse.json(
         {
           error:
-            "Email service is not configured. Missing EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, or EMAILJS_PUBLIC_KEY.",
+            "Email service is not configured. Add EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, and EMAILJS_PUBLIC_KEY (or NEXT_PUBLIC_ prefixed variants) in your deployment environment variables.",
         },
         { status: 500 }
       );

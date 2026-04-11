@@ -7,9 +7,10 @@ import React from "react";
 
 const AboutMe = () => {
   const downloadResume = () => {
+    const resumeFileName = "Hammad-Ur-Rehman-Resume.pdf";
     const link = document.createElement("a");
-    link.href = "/resume/Hammad_Resume.pdf";
-    link.download = "Hammad_Resume.pdf";
+    link.href = `/resume/${resumeFileName}`;
+    link.download = resumeFileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
