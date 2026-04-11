@@ -14,6 +14,18 @@ const navLinks = [
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
 
+  // Prevent scroll when menu is open
+  React.useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "";
+    }
+    return () => {
+      document.body.style.overflowY = "";
+    };
+  }, [menuOpen]);
+
   // Scroll function
   const handleScroll = (id: string) => {
     const el = document.getElementById(id);
