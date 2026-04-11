@@ -17,11 +17,14 @@ const Navbar = () => {
   // Prevent scroll when menu is open
   React.useEffect(() => {
     if (menuOpen) {
+      document.documentElement.style.overflowY = "hidden";
       document.body.style.overflowY = "hidden";
     } else {
+      document.documentElement.style.overflowY = "";
       document.body.style.overflowY = "";
     }
     return () => {
+      document.documentElement.style.overflowY = "";
       document.body.style.overflowY = "";
     };
   }, [menuOpen]);
@@ -36,7 +39,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 flex justify-between items-center px-6 md:px-8 py-4 backdrop-blur-md bg-black/60 border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-8 py-4 backdrop-blur-md bg-black/60 border-b border-white/10">
       {/* Logo */}
       <button
         onClick={() => handleScroll("home")}
@@ -75,9 +78,17 @@ const Navbar = () => {
         {menuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
+      {/* Backdrop Overlay */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 lg:hidden z-40"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-screen w-72 bg-black/95 backdrop-blur-md border-l border-white/10 transform transition-transform duration-300 lg:hidden ${
+        className={`fixed top-0 right-0 h-screen w-72 bg-black/95 backdrop-blur-md border-l border-white/10 transform transition-transform duration-300 lg:hidden z-50 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
