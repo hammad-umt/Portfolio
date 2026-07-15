@@ -53,21 +53,21 @@ const Experience = () => {
         </div>
 
         {/* Timeline */}
-        <div className="space-y-0">
+        <div className="flex flex-col gap-6">
           {experiences.map((exp, index) => (
             <div key={index} className="relative flex gap-6 md:gap-10">
               {/* Timeline Track */}
               <div className="flex flex-col items-center shrink-0">
                 {/* Dot */}
-                <div className="w-3 h-3 rounded-full bg-[var(--accent)] border-[3px] border-[var(--bg-secondary)] ring-2 ring-[var(--accent)]/30 mt-2" />
+                <div className="w-3 h-3 rounded-full bg-[var(--accent)] border-[3px] border-[var(--bg-secondary)] ring-2 ring-[var(--accent)]/30 mt-[34px]" />
                 {/* Line */}
                 {index < experiences.length - 1 && (
-                  <div className="w-px flex-1 bg-[var(--border-strong)]" />
+                  <div className="w-px flex-1 bg-[var(--border-strong)] mt-4" />
                 )}
               </div>
 
               {/* Content Card */}
-              <div className="flex-1 pb-20 last:pb-0">
+              <div className="flex-1 pb-20 last:pb-0 pt-2">
                 <div className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow duration-300">
                   {/* Header */}
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6 pb-6 border-b border-[var(--border)]">
