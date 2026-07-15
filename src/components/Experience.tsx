@@ -67,37 +67,37 @@ const Experience = () => {
               </div>
 
               {/* Content Card */}
-              <div className="flex-1 pb-12 last:pb-0">
-                <div className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="flex-1 pb-20 last:pb-0">
+                <div className="bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow duration-300">
                   {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6 pb-6 border-b border-[var(--border)]">
                     <div>
-                      <h3 className="font-[family-name:var(--font-inter)] text-lg font-semibold text-[var(--text-primary)]">
+                      <h3 className="font-[family-name:var(--font-inter)] text-xl font-semibold text-[var(--text-primary)]">
                         {exp.role}
                       </h3>
-                      <div className="flex items-center gap-2 mt-1">
-                        <Building2 className="w-3.5 h-3.5 text-[var(--accent)]" />
-                        <span className="text-[var(--accent)] font-medium text-sm">
+                      <div className="flex items-center gap-2 mt-2">
+                        <Building2 className="w-4 h-4 text-[var(--accent)]" />
+                        <span className="text-[var(--accent)] font-medium text-base">
                           {exp.company}
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[var(--text-faint)] text-xs font-medium shrink-0">
-                      <Calendar className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-2 text-[var(--text-muted)] text-sm font-medium shrink-0 bg-[var(--bg-secondary)] px-3 py-1.5 rounded-md border border-[var(--border)] w-fit">
+                      <Calendar className="w-4 h-4 text-[var(--text-faint)]" />
                       <span>{exp.period}</span>
-                      <span className="mx-1">·</span>
+                      <span className="text-[var(--text-faint)]">|</span>
                       <span>{exp.location}</span>
                     </div>
                   </div>
-
+ 
                   {/* Bullets */}
-                  <ul className="space-y-2.5">
+                  <ul className="space-y-4">
                     {exp.bullets.map((bullet, bIdx) => (
                       <li
                         key={bIdx}
-                        className="flex items-start gap-3 text-[var(--text-secondary)] text-sm leading-relaxed"
+                        className="flex items-start gap-3.5 text-[var(--text-secondary)] text-[15px] leading-relaxed"
                       >
-                        <span className="w-1 h-1 rounded-full bg-[var(--accent)] shrink-0 mt-2" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0 mt-2.5" />
                         {bullet}
                       </li>
                     ))}
