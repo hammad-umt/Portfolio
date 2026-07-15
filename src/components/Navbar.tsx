@@ -3,18 +3,24 @@ import React from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { id: 1, name: "Home", link: "home" },
-  { id: 2, name: "About", link: "about" },
-  { id: 3, name: "Skills", link: "skills" },
-  { id: 4, name: "Education", link: "education" },
-  { id: 5, name: "Projects", link: "projects" },
+  { id: 1, name: "About", link: "about" },
+  { id: 2, name: "Experience", link: "experience" },
+  { id: 3, name: "Projects", link: "projects" },
+  { id: 4, name: "Skills", link: "skills" },
+  { id: 5, name: "Education", link: "education" },
   { id: 6, name: "Contact", link: "contact" },
 ];
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
-  // Prevent scroll when menu is open
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   React.useEffect(() => {
     if (menuOpen) {
       document.documentElement.style.overflowY = "hidden";
@@ -29,7 +35,6 @@ const Navbar = () => {
     };
   }, [menuOpen]);
 
-  // Scroll function
   const handleScroll = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -39,22 +44,29 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-8 py-4 backdrop-blur-md bg-black/60 border-b border-white/10">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-10 py-4 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#faf9f6]/90 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.06)]"
+          : "bg-transparent"
+      }`}
+    >
       {/* Logo */}
       <button
         onClick={() => handleScroll("home")}
-        className="text-2xl md:text-3xl font-bold tracking-tight text-indigo-400 hover:text-indigo-300 transition-colors duration-300"
+        className="font-[family-name:var(--font-serif)] text-xl md:text-2xl tracking-tight text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors duration-300"
+        aria-label="Go to top"
       >
-        Hammad
+        Hammad<span className="text-[var(--accent)]">.</span>
       </button>
 
       {/* Desktop Nav */}
-      <ul className="hidden lg:flex gap-8 font-medium">
+      <ul className="hidden lg:flex gap-8 items-center">
         {navLinks.map((nav) => (
           <li key={nav.id}>
             <button
               onClick={() => handleScroll(nav.link)}
-              className="text-gray-300 text-sm hover:text-white transition-colors duration-300 pb-1 border-b-2 border-transparent hover:border-indigo-500"
+              className="link-underline text-[var(--text-muted)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors duration-300"
             >
               {nav.name}
             </button>
@@ -62,74 +74,81 @@ const Navbar = () => {
         ))}
       </ul>
 
-      {/* Desktop CTA Button */}
-      <button
-        onClick={() => handleScroll("contact")}
-        className="hidden lg:inline-flex px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30"
+      {/* Desktop CTA */}
+      <a
+        href="/resume/Hammad-Ur-Rehman-Resume.pdf"
+        download="Hammad-Ur-Rehman-Resume.pdf"
+        className="hidden lg:inline-flex items-center gap-2 px-5 py-2 bg-[var(--text-primary)] text-[var(--bg-primary)] text-sm font-medium rounded-full hover:bg-[var(--accent)] transition-colors duration-300"
       >
-        Hire Me
-      </button>
+        Resume
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+        </svg>
+      </a>
 
       {/* Mobile Menu Button */}
       <button
-        className="lg:hidden text-gray-300 hover:text-white transition-colors"
+        className="lg:hidden text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors p-2"
         onClick={() => setMenuOpen(!menuOpen)}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
       >
-        {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        {menuOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
 
       {/* Backdrop Overlay */}
       {menuOpen && (
         <div
-          className="fixed inset-0 bg-black/50 lg:hidden z-40"
+          className="fixed inset-0 bg-black/30 lg:hidden z-40"
           onClick={() => setMenuOpen(false)}
         />
       )}
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-screen w-72 bg-black/95 backdrop-blur-md border-l border-white/10 transform transition-transform duration-300 lg:hidden z-50 ${
+        className={`fixed top-0 right-0 h-screen w-72 bg-[var(--bg-primary)] border-l border-[var(--border)] transform transition-transform duration-300 lg:hidden z-50 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
           {/* Mobile Menu Header */}
-          <div className="flex items-center justify-between p-6 border-b border-white/10">
-            <button
-              onClick={() => handleScroll("home")}
-              className="text-xl font-bold text-indigo-400"
-            >
-              Hammad
-            </button>
+          <div className="flex items-center justify-between p-6 border-b border-[var(--border)]">
+            <span className="font-[family-name:var(--font-serif)] text-xl text-[var(--text-primary)]">
+              Menu
+            </span>
             <button
               onClick={() => setMenuOpen(false)}
-              className="text-gray-300 hover:text-white"
+              className="text-[var(--text-muted)] hover:text-[var(--text-primary)] p-1"
+              aria-label="Close menu"
             >
-              <X size={24} />
+              <X size={20} />
             </button>
           </div>
 
           {/* Mobile Menu Links */}
-          <div className="flex flex-col grow p-6 gap-3">
+          <div className="flex flex-col grow p-6 gap-1">
             {navLinks.map((nav) => (
               <button
                 key={nav.id}
                 onClick={() => handleScroll(nav.link)}
-                className="w-full text-left text-gray-300 text-sm font-medium hover:text-white hover:translate-x-1 transition-all duration-300 py-3 px-4 rounded-lg hover:bg-white/5"
+                className="w-full text-left text-[var(--text-secondary)] text-base font-medium hover:text-[var(--accent)] transition-colors duration-200 py-3 px-3 rounded-lg hover:bg-[var(--accent-light)]"
               >
                 {nav.name}
               </button>
             ))}
           </div>
 
-          {/* Mobile CTA Button */}
-          <div className="p-6 border-t border-white/10">
-            <button
-              onClick={() => handleScroll("contact")}
-              className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-full transition-all duration-300"
+          {/* Mobile Resume Button */}
+          <div className="p-6 border-t border-[var(--border)]">
+            <a
+              href="/resume/Hammad-Ur-Rehman-Resume.pdf"
+              download="Hammad-Ur-Rehman-Resume.pdf"
+              className="flex items-center justify-center gap-2 w-full py-3 bg-[var(--text-primary)] text-[var(--bg-primary)] font-medium text-sm rounded-full hover:bg-[var(--accent)] transition-colors duration-300"
             >
-              Hire Me
-            </button>
+              Download Resume
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>

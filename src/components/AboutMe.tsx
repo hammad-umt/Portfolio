@@ -1,77 +1,102 @@
-'use client';
+"use client";
 
-import { faFile } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React from "react";
 
+const stats = [
+  { label: "Internships", value: "2" },
+  { label: "Projects", value: "7+" },
+  { label: "Technologies", value: "15+" },
+];
+
 const AboutMe = () => {
-  const downloadResume = () => {
-    const resumeFileName = "Hammad-Ur-Rehman-Resume.pdf";
-    const link = document.createElement("a");
-    link.href = `/resume/${resumeFileName}`;
-    link.download = resumeFileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
-    <section id="about" className="py-24 px-6 md:px-8 bg-slate-950">
+    <section id="about" className="py-20 md:py-28 px-6 md:px-10">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-5xl md:text-6xl font-bold mb-12">
-          <span className="text-white">About</span>
-          <span className="bg-linear-to-r from-indigo-400 to-blue-400 text-transparent bg-clip-text"> Me</span>
-        </h2>
+        {/* Section Header */}
+        <div className="mb-14">
+          <hr className="section-divider mb-4" />
+          <h2 className="text-4xl md:text-5xl font-normal">
+            About<span className="italic text-[var(--accent)]"> Me</span>
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
           {/* Profile Image */}
           <div className="lg:col-span-1">
-            <div className="relative w-64 h-80 mx-auto">
+            <div className="relative w-56 h-68 sm:w-64 sm:h-80 mx-auto lg:mx-0">
               <Image
-                className="rounded-xl object-cover w-full h-full"
+                className="rounded-xl object-cover w-full h-full shadow-md"
                 src="/MyImage.png"
-                alt="Hammad's profile"
-                width={300}
-                height={350}
+                alt="Hammad Ur Rehman"
+                width={280}
+                height={340}
               />
-              <div className="absolute inset-0 rounded-xl border border-indigo-500/30"></div>
             </div>
           </div>
 
           {/* About Content */}
           <div className="lg:col-span-2 space-y-6">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-2">I'm Hammad Ur Rehman</h3>
-              <p className="text-indigo-400 text-lg">Full-Stack Developer</p>
+              <h3 className="font-[family-name:var(--font-inter)] text-xl font-semibold text-[var(--text-primary)] mb-1">
+                Hammad Ur Rehman
+              </h3>
+              <p className="text-[var(--accent)] font-medium">
+                Full Stack Developer
+              </p>
             </div>
 
-            <p className="text-gray-400 leading-relaxed text-lg">
-              Final-year Software Engineering student at UMT Lahore with hands-on experience in ASP.NET Core and MERN stack. I've worked at Devsinn Technologies and 10Pearls Pakistan, building scalable APIs, responsive UIs, and production-ready applications.
+            <p className="text-[var(--text-secondary)] leading-relaxed text-base">
+              Software Engineering graduate from the University of Management and Technology (UMT), Lahore, with hands-on internship experience at 10Pearls Pakistan and Devsinn Technologies. I specialize in building production-ready RESTful APIs with ASP.NET Core, full-stack applications with the MERN stack, and performant frontends with Next.js. I&apos;m passionate about clean, scalable code and have a growing focus on AI-driven applications.
             </p>
 
-            <div className="pt-6 border-t border-white/10 space-y-3">
-              <div>
-                <p className="text-sm text-gray-400 uppercase tracking-wider">Email</p>
-                <p className="text-white font-semibold">hammadurrehmanse@gmail.com</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-400 uppercase tracking-wider">Location</p>
-                <p className="text-white font-semibold">Lahore, Pakistan</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-400 uppercase tracking-wider">Phone</p>
-                <p className="text-white font-semibold">+92 334 9711129</p>
-              </div>
+            {/* Stats Row */}
+            <div className="flex gap-8 pt-2">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-2xl font-semibold text-[var(--text-primary)] font-[family-name:var(--font-inter)]">
+                    {stat.value}
+                  </p>
+                  <p className="text-sm text-[var(--text-muted)]">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
             </div>
 
-            <button
-              onClick={downloadResume}
-              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors mt-4"
-            >
-              <FontAwesomeIcon icon={faFile} className="w-4 h-4" />
-              Download Resume
-            </button>
+            {/* Contact Details */}
+            <div className="pt-4 border-t border-[var(--border)] space-y-2.5">
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[var(--text-faint)] uppercase tracking-widest w-16">
+                  Email
+                </span>
+                <a
+                  href="mailto:hammadurrehmanse@gmail.com"
+                  className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors text-sm"
+                >
+                  hammadurrehmanse@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[var(--text-faint)] uppercase tracking-widest w-16">
+                  Phone
+                </span>
+                <a
+                  href="tel:+923349711129"
+                  className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors text-sm"
+                >
+                  +92 334 971 1129
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[var(--text-faint)] uppercase tracking-widest w-16">
+                  Based
+                </span>
+                <span className="text-[var(--text-secondary)] text-sm">
+                  Lahore, Pakistan
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,213 +1,279 @@
-import React from "react";
-import { Github, ExternalLink } from "lucide-react";
+"use client";
 
-const techColors: Record<string, string> = {
-  "C#": "bg-purple-700/20 text-purple-300 border border-purple-500/30",
-  "ASP.NET Core": "bg-indigo-700/20 text-indigo-300 border border-indigo-500/30",
-  "EF Core": "bg-indigo-700/20 text-indigo-300 border border-indigo-500/30",
-  "SQL Server": "bg-red-700/20 text-red-300 border border-red-500/30",
-  JWT: "bg-amber-700/20 text-amber-300 border border-amber-500/30",
-  BCrypt: "bg-slate-700/20 text-slate-300 border border-slate-500/30",
-  AutoMapper: "bg-teal-700/20 text-teal-300 border border-teal-500/30",
-  "GitHub Actions": "bg-gray-700/20 text-gray-300 border border-gray-500/30",
-  Swagger: "bg-green-600/20 text-green-300 border border-green-500/30",
-  "Next.js": "bg-slate-700/20 text-slate-300 border border-slate-500/30",
-  "Tailwind CSS": "bg-sky-600/20 text-sky-300 border border-sky-500/30",
-  React: "bg-cyan-600/20 text-cyan-300 border border-cyan-500/30",
-  TypeScript: "bg-blue-700/20 text-blue-300 border border-blue-500/30",
-  "Shadcn UI": "bg-emerald-600/20 text-emerald-300 border border-emerald-500/30",
-  HTML: "bg-orange-600/20 text-orange-300 border border-orange-500/30",
-  CSS: "bg-blue-600/20 text-blue-300 border border-blue-500/30",
-  Javascript: "bg-yellow-600/20 text-yellow-300 border border-yellow-500/30",
-  Flask: "bg-slate-700/20 text-slate-300 border border-slate-500/30",
-  SQLite: "bg-indigo-600/20 text-indigo-300 border border-indigo-500/30",
-  "Gemini API": "bg-purple-600/20 text-purple-300 border border-purple-500/30",
-  Flutter: "bg-blue-500/20 text-blue-300 border border-blue-500/30",
-  Dart: "bg-sky-700/20 text-sky-300 border border-sky-500/30",
-  Firebase: "bg-amber-600/20 text-amber-300 border border-amber-500/30",
-  "Provider": "bg-green-600/20 text-green-300 border border-green-500/30",
-  NewsAPI: "bg-red-600/20 text-red-300 border border-red-500/30",
-  MongoDB: "bg-green-700/20 text-green-300 border border-green-500/30",
-  "Express.js": "bg-gray-800/20 text-gray-300 border border-gray-500/30",
-  "Node.js": "bg-green-800/20 text-green-300 border border-green-500/30",
-};
+import React, { useState } from "react";
+import { Github, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 
-const projects = [
-  {
-    id: 0,
-    title: "Eclore",
-    techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
-    description:
-      "A modern web platform with seamless user experience and optimized performance.",
-    link: "https://eclore.com/",
-  },
+interface Project {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  techUsed: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  featured?: boolean;
+}
+
+const projects: Project[] = [
   {
     id: 1,
-    title: "Drafidox",
-    techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+    title: "CyberSentinel",
+    subtitle: "AI-Powered Cybersecurity Monitoring System",
     description:
-      "Optimized UI and streamlined API integrations for a smoother user journey.",
-    link: "https://www.drafidox.com/",
+      "End-to-end AI-powered cybersecurity monitoring system with a FastAPI backend, Flutter frontend, and Supabase. Implements a hybrid intrusion detection engine using Random Forest (CICIDS2017 dataset) alongside Isolation Forest and K-Means for anomaly detection on Windows firewall logs. Features a responsive SOC dashboard for real-time visualization of alerts, threat scores, and security analytics.",
+    techUsed: ["Python", "FastAPI", "Flutter", "Supabase", "Random Forest", "K-Means"],
+    featured: true,
   },
   {
     id: 2,
-    title: "Ink Well",
-    techUsed:["Next.js","Tailwind CSS","TypeScript","Shadcn UI","MongoDB","Express.js","Node.js"],
+    title: "ClinicOS",
+    subtitle: "Role-Based Clinic Management System",
     description:
-      "A full-stack blogging platform with user authentication, rich text editing, and responsive design.",
-    link:"https://inkwellnotesapp.vercel.app/",
+      "Designed and developed a role-based clinic management system for a local clinic in Lahore using ASP.NET Core and Next.js. Implements Admin, Doctor, and Receptionist roles with dedicated dashboards and role-based permissions. Integrates RTK Query for efficient API communication and a responsive UI with Tailwind CSS v4 for patient records, appointments, and scheduling.",
+    techUsed: ["ASP.NET Core", "C#", "Next.js", "TypeScript", "Tailwind CSS", "RTK Query"],
+    featured: true,
   },
   {
     id: 3,
-    title: "Task Management API",
-    techUsed: ["C#", "ASP.NET Core", "EF Core", "SQL Server", "JWT", "BCrypt", "AutoMapper", "GitHub Actions", "Swagger"],
+    title: "Drafidox",
+    subtitle: "AI-Powered Document & Image Conversion Platform",
     description:
-      "A production-ready RESTful API with JWT authentication, role-based authorization, and Swagger documentation.",
-    link: "https://github.com/hammad-umt/task_management_api",
+      "Redesigned and rebuilt the frontend of a 20+ tool SaaS platform (OCR, PDF to Word, Image to Text, File Compressor, etc.) using Next.js and TypeScript. Integrated the platform's in-house backend APIs to power core conversion workflows, handling async requests, loading, and error states. Built a consistent, reusable component system across converter, preview, and editor pages.",
+    techUsed: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
+    liveUrl: "https://drafidox.com/",
   },
   {
     id: 4,
-    title: "Umazing",
-    techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React", "Shadcn UI"],
+    title: "Eclore",
+    subtitle: "Luxury Streetwear E-Commerce Platform",
     description:
-      "Led a full UI revamp including dynamic routing and a detailed product page to enhance navigation and user experience.",
-    link: "https://umazing.shop/",
+      "Built and deployed a production e-commerce storefront for a luxury streetwear brand using Next.js 15, TypeScript, and Tailwind CSS, serving live customers with Cash-on-Delivery checkout. Engineered 18+ reusable React components. Optimized SEO with JSON-LD structured data, dynamic sitemap generation, and Open Graph meta tags — achieved indexed visibility on Google Search.",
+    techUsed: ["Next.js 15", "TypeScript", "Tailwind CSS", "React", "Vercel"],
+    liveUrl: "https://www.ecloraofficial.store/",
   },
   {
     id: 5,
-    title: "InfinetWorx",
-    techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+    title: "Umazing",
+    subtitle: "Mobile Accessories E-Commerce Storefront",
     description:
-      "Built a modern, responsive landing page for a tech company with clean design and fast performance.",
-    link: "https://infinetworx.vercel.app/",
+      "Developed a visually polished, mobile-first storefront UI for a mobile accessories brand. Created reusable product card, gallery, and filtering components to display 15+ SKUs across multiple categories. Designed a stock-status system and category navigation. Implemented SEO-optimized metadata and social sharing tags.",
+    techUsed: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
+    liveUrl: "https://www.umazing.shop/",
   },
   {
     id: 6,
-    title: "Portfolio",
-    techUsed: ["Next.js", "Tailwind CSS", "TypeScript", "React"],
+    title: "Inkwell",
+    subtitle: "Full-Stack Notes Tracking App",
     description:
-      "Personal portfolio to showcase projects, skills, and contact info with responsive design.",
-    link: "https://hammadurrehman10.netlify.app",
+      "Built full-stack notes tracking application with end-to-end CRUD using Node.js, Express.js, and MongoDB. Implemented JWT authentication, bcrypt password hashing, and RESTful API design.",
+    techUsed: ["Node.js", "Express.js", "MongoDB", "Next.js", "Tailwind CSS", "JWT"],
+    liveUrl: "https://inkwellnotesapp.vercel.app/",
   },
   {
     id: 7,
-    title: "AI Recipe Finder",
-    techUsed: ["HTML", "CSS", "Javascript", "Flask", "SQLite", "Tailwind CSS", "Gemini API"],
+    title: "Job Tracker",
+    subtitle: "Full-Stack Task Management System",
     description:
-      "Generates detailed recipes from ingredients using Gemini API with step-by-step instructions.",
-    link: "https://github.com/hammad-umt/AI_Recipe_Finder",
-  },
-  {
-    id: 8,
-    title: "News App",
-    techUsed: ["React", "Tailwind CSS", "NewsAPI"],
-    description:
-      "Responsive app that fetches latest Pakistan-related articles using NewsAPI.",
-    link: "https://github.com/hammad-umt/News-App-Using-React",
-  },
-  {
-    id: 9,
-    title: "Quiz App",
-    techUsed: ["Flutter", "Dart", "Firebase", "Provider", "Gemini API"],
-    description:
-      "AI-powered quiz app with real-time scoring and dynamic questions via Gemini API.",
-    link: "https://github.com/hammad-umt/QuizzyApp",
-  },
-  {
-    id: 10,
-    title: "Amazon Web Page Clone",
-    techUsed: ["HTML", "CSS"],
-    description:
-      "Responsive clone of Amazon landing page focusing on layout and responsiveness.",
-    link: "https://github.com/hammad-umt/Amazon-Clone-Project-Using-HTML-CSS",
-  },
-  {
-    id: 11,
-    title: "Social Links",
-    techUsed: ["HTML", "CSS"],
-    description:
-      "Clean, responsive social links page demonstrating core web-design fundamentals.",
-    link: "https://github.com/hammad-umt/Social-Links-Profile",
+      "Built a production-grade Task Management API using ASP.NET Core, C#, and EF Core, with a Next.js and Shadcn UI frontend. Implemented JWT authentication, Repository Pattern, and AutoMapper for clean, maintainable architecture. Secured user data with BCrypt password hashing and role-based access control. Designed SQL Server database with EF Core migrations.",
+    techUsed: ["ASP.NET Core", "C#", "EF Core", "SQL Server", "Next.js", "Shadcn UI", "JWT"],
+    githubUrl: "https://github.com/hammad-umt/job-tracker-api",
   },
 ];
 
 const Projects = () => {
-  // Featured projects - displayed prominently
-  const featured = [
-    projects.find(p => p.title === "Drafidox"),
-    projects.find(p => p.title === "Ink Well"),
-  ].filter(Boolean);
+  const [showAll, setShowAll] = useState(false);
 
-  // Other projects (excluding Task Management API, Drafidox, and Ink Well)
-  const others = projects.filter(
-    p => p.title !== "Drafidox" && p.title !== "Ink Well" && p.title !== "Eclore"
-  ).slice(0, 9);
+  const featured = projects.filter((p) => p.featured);
+  const others = projects.filter((p) => !p.featured);
+  const visibleOthers = showAll ? others : others.slice(0, 3);
 
   return (
-    <section id="projects" className="py-24 px-6 md:px-8 bg-slate-950">
+    <section id="projects" className="py-20 md:py-28 px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4">
-            <span className="text-white">Featured</span>
-            <span className="bg-linear-to-r from-indigo-400 to-blue-400 text-transparent bg-clip-text"> Projects</span>
+        {/* Section Header */}
+        <div className="mb-14">
+          <hr className="section-divider mb-4" />
+          <h2 className="text-4xl md:text-5xl font-normal mb-3">
+            Featured<span className="italic text-[var(--accent)]"> Projects</span>
           </h2>
-          <p className="text-gray-400 text-lg">Production-ready applications showcasing full-stack expertise.</p>
+          <p className="text-[var(--text-muted)] text-base max-w-xl">
+            Production-ready applications showcasing full-stack expertise across different domains.
+          </p>
         </div>
 
-        {/* Featured Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+        {/* Featured Projects — Large Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
           {featured.map((project) => (
-            <div key={project?.id} className="bg-white/5 border border-white/10 rounded-xl p-8 hover:border-indigo-500/30 transition-all group">
-              <div className="space-y-6">
-                <div>
-                  <span className="text-indigo-400 text-sm font-semibold uppercase tracking-wider">Featured</span>
-                  <h3 className="text-3xl font-bold text-white mt-2 group-hover:text-indigo-400 transition-colors">{project?.title}</h3>
+            <div
+              key={project.id}
+              className="group bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl p-7 md:p-8 hover:border-[var(--accent)]/30 hover:shadow-md transition-all duration-300"
+            >
+              <div className="space-y-5">
+                {/* Badge */}
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--accent-light)] text-[var(--accent)] text-xs font-semibold uppercase tracking-wider">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+                    Featured
+                  </span>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--text-faint)] hover:text-[var(--accent)] transition-colors"
+                      aria-label={`Visit ${project.title}`}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
                 </div>
-                <p className="text-gray-300 leading-relaxed text-base">{project?.description}</p>
+
+                {/* Title */}
                 <div>
-                  <p className="text-sm text-gray-400 uppercase tracking-wider mb-3">Tech Stack</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project?.techUsed.map((tech) => (
-                      <span key={tech} className={`px-3 py-1 rounded-full text-xs font-medium ${techColors[tech] || "bg-slate-700/20 text-slate-300 border border-slate-500/30"}`}>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  <h3 className="font-[family-name:var(--font-serif)] text-2xl md:text-3xl text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-[var(--text-muted)] text-sm mt-1 font-medium">
+                    {project.subtitle}
+                  </p>
                 </div>
-                <a href={project?.link} target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 font-semibold text-sm pt-4">
-                  <ExternalLink className="w-4 h-4" />
-                  View Project
-                </a>
+
+                {/* Description */}
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {project.techUsed.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 rounded-full text-xs font-medium bg-[var(--bg-secondary)] text-[var(--text-muted)] border border-[var(--border)]"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex items-center gap-4 pt-2">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium text-sm transition-colors"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Live Demo
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] font-medium text-sm transition-colors"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                      Source Code
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Other Projects Section */}
+        {/* Other Projects */}
         <div>
-          <h3 className="text-2xl font-bold text-white mb-8">Other Projects</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {others.map((project, index) => (
-          <div key={project.id} className="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-indigo-500/30 transition-all">
-            <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-            <p className="text-gray-400 text-sm mb-4 line-clamp-3">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.techUsed.map((tech) => (
-                <span key={tech} className={`px-2 py-1 rounded-full text-xs font-medium ${techColors[tech] || "bg-slate-700/20 text-slate-300 border border-slate-500/30"}`}>
-                  {tech}
-                </span>
-              ))}
-            </div>
-            {project.link && (
-              <a href={project.link} target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 font-semibold text-sm">
-                <ExternalLink className="w-4 h-4" />
-                View Project
-              </a>
-            )}
+          <h3 className="font-[family-name:var(--font-inter)] text-lg font-semibold text-[var(--text-primary)] mb-6">
+            More Projects
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {visibleOthers.map((project) => (
+              <div
+                key={project.id}
+                className="group bg-[var(--bg-elevated)] border border-[var(--border)] rounded-xl p-6 hover:border-[var(--accent)]/30 hover:shadow-sm transition-all duration-300"
+              >
+                {/* Title */}
+                <h4 className="font-[family-name:var(--font-serif)] text-xl text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-300 mb-1">
+                  {project.title}
+                </h4>
+                <p className="text-[var(--text-faint)] text-xs font-medium mb-3">
+                  {project.subtitle}
+                </p>
+
+                {/* Description */}
+                <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {project.techUsed.slice(0, 4).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[var(--bg-secondary)] text-[var(--text-muted)] border border-[var(--border)]"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.techUsed.length > 4 && (
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-medium text-[var(--text-faint)]">
+                      +{project.techUsed.length - 4}
+                    </span>
+                  )}
+                </div>
+
+                {/* Links */}
+                <div className="flex items-center gap-4">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium text-sm transition-colors"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Visit
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] font-medium text-sm transition-colors"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                      Code
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-        </div>
+
+          {/* Show More / Less */}
+          {others.length > 3 && (
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] border border-[var(--border)] rounded-full hover:border-[var(--accent)]/30 transition-all duration-300"
+              >
+                {showAll ? (
+                  <>
+                    Show Less <ChevronUp className="w-4 h-4" />
+                  </>
+                ) : (
+                  <>
+                    Show More <ChevronDown className="w-4 h-4" />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

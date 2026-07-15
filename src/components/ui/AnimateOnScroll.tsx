@@ -7,10 +7,10 @@ interface Props {
   delay?: number;
 }
 
-export default function AnimateOnScroll({ 
-  children, 
+export default function AnimateOnScroll({
+  children,
   animation = "fade",
-  delay = 0 
+  delay = 0,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -35,11 +35,11 @@ export default function AnimateOnScroll({
   }, [delay]);
 
   const animationClass = {
-    fade: "fade-in",
-    "slide-up": "slide-up",
-    "slide-left": "slide-left",
-    "slide-right": "slide-right",
-    scale: "scale-in"
+    fade: "reveal-fade",
+    "slide-up": "reveal-up",
+    "slide-left": "reveal-left",
+    "slide-right": "reveal-right",
+    scale: "reveal-scale",
   }[animation];
 
   return (
@@ -48,8 +48,8 @@ export default function AnimateOnScroll({
       className={isVisible ? animationClass : "opacity-0"}
       style={{
         transitionProperty: isVisible ? "none" : "opacity",
-        transitionDuration: "0.8s",
-        transitionTimingFunction: "ease-out"
+        transitionDuration: "0.7s",
+        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
       }}
     >
       {children}
